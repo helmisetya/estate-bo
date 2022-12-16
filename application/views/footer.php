@@ -11,6 +11,7 @@
 
     <!-- jQuery -->
     <script src="<?= base_url()?>/assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
     <!-- Datatables -->
     <script src="<?= base_url()?>/assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url()?>/assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -26,6 +27,9 @@
     <script src="<?= base_url()?>/assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?= base_url()?>/assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- select 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>/assets/plugins/select2/js/select2.full.min.js"></script> -->
     <!-- FastClick -->
     <script src="<?= base_url()?>/assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
@@ -64,6 +68,7 @@
     <script src="<?= base_url()?>/assets/build/js/custom.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
+        
         $(".myTable").DataTable({
           "retrieve" : true,
           "responsive": true,
