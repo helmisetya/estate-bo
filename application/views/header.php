@@ -36,7 +36,8 @@
     <link href="<?= base_url()?>/assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="<?= base_url()?>/assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
+    <!-- switchery -->
+    <link href="<?= base_url()?>/assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -79,7 +80,7 @@
                       <li><a href="index3.html">Customer</a></li>
                       <li><a href="index3.html">Supplier</a></li>
                       <li><a href="index3.html">Sales</a></li>
-                      <li><a href="index3.html">COA</a></li>
+                      <li><a href="<?= site_url('master/coa')?>">COA</a></li>
                       <li><a href="index3.html">Pesentase Income</a></li>
                     </ul>
                   </li>

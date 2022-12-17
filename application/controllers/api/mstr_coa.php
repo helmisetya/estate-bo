@@ -39,9 +39,9 @@ class mstr_coa extends CI_Controller
                     'enable'=>$row->enable,
                     'kode_thp'=>$row->kode_thp,
                     'created_at'=> date('Y-m-d H:i:s'),
-                    'created_by'=>$_SESSION['username'],
+                    'created_by'=>'programmer',
                     'updated_at'=> date('Y-m-d H:i:s'),
-                    'updated_by'=>$_SESSION['username'],
+                    'updated_by'=>'programmer',
                     'n1'=>$row->n1,
                     'n2'=>$row->n2,
                     'n3'=>$row->n3,
@@ -49,8 +49,14 @@ class mstr_coa extends CI_Controller
                     'n5'=>$row->n5,
                 );
                 $masukkan_data = $this->global_model->insert_table('default','mstr_coa',$arr_insert);
-                $data['status'] = $masukkan_data['status'];
-                $data['msg'][$row->no_coa] = $masukkan_data['msg'];
+
+                $data['status'] = 200;
+                $data['msg'][$row->no_coa] = 'berhasil simpan';
+                if($masukkan_data['status'] != 200){
+                    $data['status'] = 500;
+                    $data['msg'][$row->no_coa] = $masukkan_data['msg'];
+                }
+                
             }
         }
         return $this->output

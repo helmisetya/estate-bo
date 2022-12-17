@@ -63,7 +63,8 @@
     <!-- bootstrap-daterangepicker -->
     <script src="<?= base_url()?>/assets/vendors/moment/min/moment.min.js"></script>
     <script src="<?= base_url()?>/assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
+    <!-- Switchery -->
+    <script src="<?= base_url()?>/assets/vendors/switchery/dist/switchery.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url()?>/assets/build/js/custom.min.js"></script>
     <script type="text/javascript">
