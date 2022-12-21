@@ -17,11 +17,19 @@ class coa extends CI_Controller
     public function index()
     {
         $data = [];
-        $data['coa'] = $this->m_coa->show_all();
+        $data['coa'] = $this->m_coa->show_all('');
         // $data['kota'] = $this->m_kota->fetch_data(1);
         $this->load->view('header');
         $this->load->view('master/v_coa',$data);
         $this->load->view('footer');
+    }
+    public function fetch_coa(){
+        $data = [];
+        $data['coa'] = $this->m_coa->show_all('');
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
     function validasi_save($data_post){
         $data = [];

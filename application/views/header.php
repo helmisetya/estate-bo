@@ -34,12 +34,23 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendors/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- JQVMap -->
     <link href="<?= base_url()?>/assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- TOOGLE -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="<?= base_url()?>/assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- switchery -->
     <link href="<?= base_url()?>/assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
+    <style>
+      .vertical-center {
+        margin-top: 4px;
+        position: absolute;
+        top: 60%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -75,7 +86,7 @@
                   <li><a><i class="fa fa-home"></i> Master <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('master/lokasi_kav')?>">Lokasi Kavling</a></li>
-                      <li><a href="index2.html">Kavling</a></li>
+                      <li><a href="<?= site_url('master/kavling')?>">Kavling</a></li>
                       <li><a href="index3.html">Barang</a></li>
                       <li><a href="index3.html">Customer</a></li>
                       <li><a href="index3.html">Supplier</a></li>

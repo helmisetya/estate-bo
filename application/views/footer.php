@@ -29,7 +29,9 @@
     <script src="<?= base_url()?>/assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- select 2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<!-- <script src="<?php echo base_url() ?>/assets/plugins/select2/js/select2.full.min.js"></script> -->
+    <!-- <script src="<?php echo base_url() ?>/assets/plugins/select2/js/select2.full.min.js"></script> -->
+    <!-- TOOGLE -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <!-- FastClick -->
     <script src="<?= base_url()?>/assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
@@ -67,6 +69,8 @@
     <script src="<?= base_url()?>/assets/vendors/switchery/dist/switchery.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url()?>/assets/build/js/custom.min.js"></script>
+    <!-- inputmask -->
+    <script src="<?php echo base_url() ?>/assets/build/js/jquery_maskmoney.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         
@@ -80,6 +84,17 @@
             [10, 25, 50, "All"]
           ]
         });
+        $("#moneyInput, #money_input, .currency_input, .money").maskMoney({
+          // prefix: 'Rp ',
+          thousands: '.',
+          decimal: ',',
+          affixesStay: false,
+          precision: 2
+        });
+        $('.select2').select2()
+        $('.select2bs4').select2({
+          theme: 'bootstrap4'
+        })
       })
     </script>
   </body>

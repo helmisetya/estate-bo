@@ -1,10 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// require APPPATH . '/libraries/Format.php';
-// require APPPATH . '/libraries/RestController.php';
-// require APPPATH . '/helpers/token.php';
-
-// use chriskacerguis\RestServer\RestController;
 
 class mstr_coa extends CI_Controller
 {
