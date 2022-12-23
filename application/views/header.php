@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
     <title>Estate - BO</title>
-
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url() ?>/assets/build/images/kag.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="<?= base_url()?>/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -27,13 +27,30 @@
     <link href="<?= base_url()?>/assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
     <link href="<?= base_url()?>/assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- sweet alert 2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendors/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendors/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- JQVMap -->
     <link href="<?= base_url()?>/assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- TOOGLE -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="<?= base_url()?>/assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
+    <!-- switchery -->
+    <link href="<?= base_url()?>/assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
+    <style>
+      .vertical-center {
+        margin-top: 4px;
+        position: absolute;
+        top: 60%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -46,15 +63,16 @@
             </div>
 
             <div class="clearfix"></div>
-
+            <input type="hidden" id="valBaseUrl" value="<?= site_url(); ?>">
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
                 <img src="<?= base_url()?>/assets/build/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
+                
+                <h2><?= $_SESSION['nama']?></h2>
+                <h5><small><?= $_SESSION['role']?></small></h5>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -67,13 +85,13 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Master <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.html">Lokasi Kavling</a></li>
-                      <li><a href="index2.html">Kavling</a></li>
+                      <li><a href="<?= site_url('master/lokasi_kav')?>">Lokasi Kavling</a></li>
+                      <li><a href="<?= site_url('master/kavling')?>">Kavling</a></li>
                       <li><a href="index3.html">Barang</a></li>
-                      <li><a href="index3.html">Customer</a></li>
+                      <li><a href="<?= site_url('master/customer')?>">Customer</a></li>
                       <li><a href="index3.html">Supplier</a></li>
                       <li><a href="index3.html">Sales</a></li>
-                      <li><a href="index3.html">COA</a></li>
+                      <li><a href="<?= site_url('master/coa')?>">COA</a></li>
                       <li><a href="index3.html">Pesentase Income</a></li>
                     </ul>
                   </li>
@@ -151,81 +169,21 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="<?= base_url()?>/assets/build/images/img.jpg" alt=""><?= $_SESSION['nama']?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
-                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    
+                    <a class="dropdown-item"  href="<?= site_url('/login/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
                 <li role="presentation" class="nav-item dropdown open">
                   <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green">0</span>
                   </a>
                   <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <div class="text-center">
-                        <a class="dropdown-item">
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
+                    
                   </ul>
                 </li>
               </ul>

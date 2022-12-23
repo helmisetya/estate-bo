@@ -22,10 +22,10 @@ class Welcome extends CI_Controller {
     {
         parent::__construct();
         ini_set('max_execution_time', 0);
-        // if ($this->session->userdata('login_sukses') == FALSE) {
-        //     redirect('login');
-        //     return;
-        // }
+        if ($this->session->userdata('login_sukses') == FALSE) {
+            redirect('login');
+            return;
+        }
         $this->load->model('master/m_lok_kav');
         // $this->load->model('master/m_kota');
         // $this->load->model('global_model');
