@@ -38,7 +38,8 @@ class kavling extends CI_Controller
             foreach($dt_kav['datanya'] as $row){
                 $data['html'] .= '<tr>';
                 $data['html'] .= '<td>'.$no.'</td>';
-                $data['html'] .= '<td>'.$row->kode_kavling.'</td>';
+                $data['html'] .= '<td>'.$row->kode_kavling.'<br><span class="badge badge-primary">Created By : '.$row->created_by.'</span>';
+                $data['html'] .= '<br><span class="badge badge-primary">Created At: '.date('d-m-Y',strtotime($row->created_at)).'</span></td>';
                 $data['html'] .= '<td>'.$row->nama.'</td>';
                 $data['html'] .= '<td>'.$row->lokasi_kav.'</td>';
                 $data['html'] .= '<td>'.$row->nama_pemilik.'</td>';

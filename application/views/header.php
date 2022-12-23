@@ -88,7 +88,7 @@
                       <li><a href="<?= site_url('master/lokasi_kav')?>">Lokasi Kavling</a></li>
                       <li><a href="<?= site_url('master/kavling')?>">Kavling</a></li>
                       <li><a href="index3.html">Barang</a></li>
-                      <li><a href="index3.html">Customer</a></li>
+                      <li><a href="<?= site_url('master/customer')?>">Customer</a></li>
                       <li><a href="index3.html">Supplier</a></li>
                       <li><a href="index3.html">Sales</a></li>
                       <li><a href="<?= site_url('master/coa')?>">COA</a></li>

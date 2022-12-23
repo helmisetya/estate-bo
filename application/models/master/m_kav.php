@@ -7,7 +7,7 @@ class m_kav extends CI_Model
         $this->db = $this->load->database('default', true);
         // $this->db->select('kav.id,kav.kode_kavling,kav.nama,kav.type,kav.luas_tanah,kav.luas_bangunan,kav.harga_jual,kav.nama_pemilik,kav.telp_pemilik,kav.status,kav.created_at,kav.created_by,t_coa1.no_coa as coabh,t_coa1.nama as nama_coabh,t_coa2.no_coa as coajl,t_coa2.nama as nama_coajl,t_coa3.no_coa as coahp,t_coa3.nama as nama_coahp,t_coa4.no_coa as coapiutang,t_coa4.nama as nama_coapiutang,t_coa5.no_coa as coatitipan,t_coa5.nama as nama_coatitipan,t_coa6.no_coa as coacadangan,t_coa6.nama as nama_coacadangan,lok_kav.lokasi_kav');
 
-        $this->db->select('kav.id,kav.kode_kavling,kav.nama,lok_kav.lokasi_kav,kav.nama_pemilik,kav.telp_pemilik');
+        $this->db->select('kav.id,kav.kode_kavling,kav.nama,lok_kav.lokasi_kav,kav.nama_pemilik,kav.telp_pemilik,kav.created_at,kav.created_by');
         $this->db->from('mstr_kavling as kav');
         // $this->db->join('mstr_coa as t_coa1','kav.coa_bh = t_coa1.no_coa','left');
         // $this->db->join('mstr_coa as t_coa2','kav.coa_jl = t_coa2.no_coa','left');
