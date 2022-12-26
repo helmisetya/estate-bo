@@ -92,7 +92,7 @@
                       <li><a href="index3.html">Supplier</a></li>
                       <li><a href="index3.html">Sales</a></li>
                       <li><a href="<?= site_url('master/coa')?>">COA</a></li>
-                      <li><a href="index3.html">Pesentase Income</a></li>
+                      <li><a href="<?= site_url('master/pesentase')?>">Pesentase Income</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-money"></i> Accounting <span class="fa fa-chevron-down"></span></a>
