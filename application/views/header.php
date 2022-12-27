@@ -59,7 +59,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Estate - BO</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-building"></i> <span>Estate - BO</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -67,7 +67,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?= base_url()?>/assets/build/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?= base_url()?>/assets/build/images/icon_gfriend.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 
@@ -89,7 +89,7 @@
                       <li><a href="<?= site_url('master/kavling')?>">Kavling</a></li>
                       <li><a href="index3.html">Barang</a></li>
                       <li><a href="<?= site_url('master/customer')?>">Customer</a></li>
-                      <li><a href="index3.html">Supplier</a></li>
+                      <li><a href="<?= site_url('master/supplier')?>">Supplier</a></li>
                       <li><a href="index3.html">Sales</a></li>
                       <li><a href="<?= site_url('master/coa')?>">COA</a></li>
                       <li><a href="<?= site_url('master/pesentase')?>">Pesentase Income</a></li>
@@ -169,7 +169,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url()?>/assets/build/images/img.jpg" alt=""><?= $_SESSION['nama']?>
+                    <img src="<?= base_url()?>/assets/build/images/icon_gfriend.png" alt=""><?= $_SESSION['nama']?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     
