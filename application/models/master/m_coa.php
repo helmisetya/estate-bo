@@ -10,7 +10,7 @@ class m_coa extends CI_Model
         }
         // $this->db->limit(10);
         $query = $this->db->get();
-        return $query->result_array();
+        return $query->result();
         
     }
     function find_by_coa($coa){
