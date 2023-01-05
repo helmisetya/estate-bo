@@ -20,33 +20,11 @@
           <!-- /top tiles -->
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
-            <div class="dashboard_graph">
-                <div class="row x_title">
-                    <div class="col-md-6">
-                    <h3>Data tables<small> Master Lokasi Kavling</small></h3>
-                    </div>
+            <div class="bs-example" data-example-id="simple-jumbotron">
+                <div class="jumbotron">
+                    <h1 style="color:black">Selamat Datang di Sistem Informasi Estate - Back Office</h1>
+                    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
                 </div>
-                <div class="col-md-12 col-sm-12" >
-                    <table id="datatable" class="table table-striped table-bordered myTable" style="width:100%">
-                        <thead>
-                            <tr>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                            foreach($lok_kav as $row){ ?>
-                                <tr>
-                                    <td><?= $row->id;?></td>
-                                    <td><?= $row->lokasi_kav; ?></td>
-                                </tr>
-                            <?php }
-                            ?>    
-                        </tbody>
-                    </table>
-                </div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>

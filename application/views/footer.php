@@ -1,7 +1,7 @@
 <!-- footer content -->
 <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          ©2022 All Rights Reserved. KAG IT Programmer
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -71,6 +71,7 @@
     <script src="<?= base_url()?>/assets/build/js/custom.min.js"></script>
     <!-- inputmask -->
     <script src="<?php echo base_url() ?>/assets/build/js/jquery_maskmoney.js"></script>
+    
     <script type="text/javascript">
       $(document).ready(function(){
         

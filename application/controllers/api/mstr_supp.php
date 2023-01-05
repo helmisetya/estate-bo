@@ -31,7 +31,7 @@ class mstr_supp extends CI_Controller
                     'telepon'=>$row->telepon,
                     'fax'=>$row->fax,
                     'coa_hutang'=>$row->Coa_hutang,
-                    'lama_hutang'=>'',
+                    'lama_hutang'=>0,
                     'created_at'=> date('Y-m-d H:i:s'),
                     'created_by'=>'programmer',
                     'updated_at'=> date('Y-m-d H:i:s'),

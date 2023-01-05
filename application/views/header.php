@@ -50,6 +50,18 @@
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
       }
+      .jumbotron {
+        background-image:url('<?= base_url('/assets/build/images/est-house2.jpg')?>');
+        height:300px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border-bottom:1px solid #ff6a00
+      }
+      .jumbotron .container {
+        position:relative;
+        top:50px;
+      }
     </style>
   </head>
 
@@ -59,7 +71,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-building"></i> <span>Estate - BO</span></a>
+              <a href="<?= site_url()?>" class="site_title"><i class="fa fa-building"></i> <span>Estate - BO</span></a>
             </div>
 
             <div class="clearfix"></div>

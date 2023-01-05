@@ -33,7 +33,7 @@ class mstr_barang extends CI_Controller
                     'satuan'=>$row->satuan,
                     'coa_no'=>$row->no_coa,
                     'aktif'=>$val_aktif,
-                    'baru'=>$row->baru,
+                    'baru'=>intval($row->baru),
                     'created_at'=> date('Y-m-d H:i:s'),
                     'created_by'=>'programmer',
                     'updated_at'=> date('Y-m-d H:i:s'),
