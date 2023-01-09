@@ -62,6 +62,21 @@
         position:relative;
         top:50px;
       }
+      .cv-spinner {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px #ddd solid;
+          border-top: 4px #2e93e6 solid;
+          border-radius: 50%;
+          animation: sp-anime 0.8s infinite linear;
+      }
     </style>
   </head>
 
@@ -173,6 +188,11 @@
 
         <!-- top navigation -->
         <div class="top_nav">
+          <!-- <div id="top_load_overlay" class="loadingoverlay"> 
+              <div class="cv-spinner">
+                  <span class="spinner"></span>
+              </div>
+          </div> -->
           <div class="nav_menu">
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>

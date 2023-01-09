@@ -19,10 +19,18 @@ class global_model extends CI_Model
     }
     function update_table($table, $data, $where)
     {
+        $dt_respon=[];
+        $dt_respon['status'] = 200;
+        $dt_respon['msg'] = 'update data success';
         $this->db->where($where);
         $query    = $this->db->update($table, $data);
-
-        return $query;
+        $error = $this->db->error();
+        
+        if(!empty($error['message'])){
+            $dt_respon['status'] = $error['code'];
+            $dt_respon['msg'] = $error['message'];
+        }
+        return $dt_respon;
     }
     function delete_table($table, $where)
     {

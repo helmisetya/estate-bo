@@ -25,23 +25,39 @@ class lokasi_kav extends CI_Controller
         $this->load->view('master/v_lokasi_kav',$data);
         $this->load->view('footer');
     }
-    function validasi_save($data_post){
+    public function show_one()
+    {
+        $data['lok_kav'] = $this->m_lok_kav->find_one($_GET['id']);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    function validasi($data_post,$action){
         $data = [];
         $data['status'] = 200;
-        $data['msg'] = 'OK';
+        $data['msg'] = '';
 
-        $exist_name = $this->m_lok_kav->find_by_name($data_post['lokasi_kav']);
-        if(count($exist_name) > 0){
+        if($data_post['lokasi_kav'] == ''){
             $data['status'] = 500;
-            $data['msg'] = 'Nama Kavling sudah digunakan';
+            $data['msg'] = 'Nama Kavling tidak boleh kosong';
         }
+        if($action == 'save'){
+            $exist_name = $this->m_lok_kav->find_by_name($data_post['lokasi_kav']);
+            if(count($exist_name) > 0){
+                $data['status'] = 500;
+                $data['msg'] .= 'Nama Kavling sudah digunakan';
+            }
+        }
+        
         return $data; 
     }
     public function save(){
         $data=[];
         $data['status'] = 200;
         $data['msg'] = '';
-        $do_validasi = $this->validasi_save($_POST);
+        $do_validasi = $this->validasi($_POST,'save');
         if($do_validasi['status'] == 200){
             $arr_insert = array(
                 'lokasi_kav'=>$_POST['lokasi_kav'],
@@ -60,6 +76,27 @@ class lokasi_kav extends CI_Controller
                 $data['msg'] = $masukkan_data['msg'];
             }
             
+        }else{
+            $data['status'] = $do_validasi['status'];
+            $data['msg'] = $do_validasi['msg'];
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header($data['status'])
+            ->set_output(json_encode($data));
+    }
+    public function edit(){
+        $data=[];
+        $data['status'] = 200;
+        $data['msg'] = '';
+        $do_validasi = $this->validasi($_POST,'edit');
+        if($do_validasi['status'] == 200){
+            $arr_update = array(
+                'lokasi_kav'=>$_POST['lokasi_kav'],
+                'updated_at'=>date('Y-m-d'),
+                'updated_by'=>$_SESSION['username'],
+            );
+            $edit_data = $this->global_model->update_table('mstr_lokasi_kav',$arr_update,"id = " . $_POST['id']);
         }else{
             $data['status'] = $do_validasi['status'];
             $data['msg'] = $do_validasi['msg'];
