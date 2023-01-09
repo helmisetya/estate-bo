@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <div class="form-group" style="margin-top: 30px;">
+                                    <div class="form-group">
                                         <label>Status Tagihan</label>
                                         <input type="checkbox" name="sts_tagihan" data-width="120" data-toggle="toggle" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="danger">
                                             <!-- <input type="checkbox" class="js-switch" name="sts_tagihan" checked /> Status Tagihan -->

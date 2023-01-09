@@ -50,8 +50,8 @@ class lokasi_kav extends CI_Controller
                 'updated_at'=>date('Y-m-d H:i:s'),
                 'updated_by'=>$_SESSION['username'],
             );
-            //$masukkan_data = $this->global_model->insert_table('default','mstr_lokasi_kav',$arr_insert);
-            $masukkan_data = $this->global_model->insert_table('tes_posgre','mstr_lokasi_kav',$arr_insert);
+            $masukkan_data = $this->global_model->insert_table('default','mstr_lokasi_kav',$arr_insert);
+            // $masukkan_data = $this->global_model->insert_table('tes_posgre','mstr_lokasi_kav',$arr_insert);
             $data['msg'] = 'Berhasil simpan';
 
             if($masukkan_data['status'] != 200){
