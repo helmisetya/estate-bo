@@ -57,7 +57,7 @@
                                     <td><?= $row->kota;?></td>
                                     <td><?= $row->telepon;?></td>
                                     <td><?= $row->nama_hutang;?></td>
-                                    <td>Edit</td>
+                                    <td><button type="button" class="btn btn btn-warning" data-supp="<?php echo $row->id; ?>" onclick="openModalEdit(this)" data-toggle="modal" data-target=".edit-modal-xl"><span class="fa fa-pencil"></span> Edit</button></td>
                                 </tr>
                             <?php $a++; }
                             ?>    
@@ -133,7 +133,77 @@
                       </div>
                     </div>
                   </div>
-                 
+                 <!-- EDIT MODAL -->
+                 <div class="modal fade edit-modal-xl" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">Tambah Data</h4>
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="frm_edit_supp">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Kode Supplier</label>
+                                        <input class="form-control" id="edit_txt_kode" type="text" name="kode" required readonly>
+                                        <input type="hidden" name="id" id="hide_id">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <input class="form-control" id="edit_txt_nama" type="text" name="nama" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Kontak</label>
+                                        <input class="form-control" id="edit_txt_kontak" type="text" name="kontak">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Alamat</label>
+                                        <textarea class="form-control" id="edit_txt_alamat" name="alamat" rows=2></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Telp</label>
+                                        <input class="form-control" id="edit_txt_telp" type="text" name="telp">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Kota</label>
+                                        <input class="form-control" id="edit_txt_kota" type="text" name="kota">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>COA Hutang</label>
+                                        <select name="coa_hutang" id="edit_sel_coa_hutang" class="form-control select2bs4" style="width: 100%;">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                          <button type="button" class="btn btn-primary" onclick="edit()">Simpan</button>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+                 <!-- END EDIT MODAL -->
                   </div>
                 </div>
               </div>
@@ -173,10 +243,40 @@
             }
         })
     }
+    function edit() {
+        Swal.fire({
+            title: 'Apakah anda yakin ingin merubah data ini?',
+            // text: "",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Simpan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl + '/master/supplier/edit',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: $("#frm_edit_supp").serialize(),
+                    success:function(data){
+                      Swal.fire('Sukses!', 'Data Berhasil Disimpan', 'success').then((close) => {
+                                    location.reload()
+                                })
+                    },
+                    error: function(err) {
+                      console.log(err)
+                      Swal.fire('Error!', err.responseJSON.msg, 'error')
+                    }
+                })
+            }
+        })
+    }
     function load_coa(){
         console.log("load bos coa")
         $.ajax({
-            url: baseUrl + '/master/coa/fetch_coa',
+            url: baseUrl + '/master/coa/fetch_coa_estate',
             method: 'GET',
             dataType: 'json',
             success : function(data){
@@ -192,6 +292,36 @@
                 console.log(xhr.statusText);
                 console.log(textStatus);
                 console.log(error);
+                Swal.fire('Error!', "Error Connection", 'error')
+            }
+        })
+    }
+    function openModalEdit(supp) {
+        var id = $(supp).data('supp')
+        $.ajax({
+            url: baseUrl + '/master/supplier/show_one',
+            method: 'GET',
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(data) {
+                //SET VALUE
+                $('#hide_id').val(data.supplier.id)
+                $('#edit_txt_kode').val(data.supplier.kode_supp)
+                $('#edit_txt_nama').val(data.supplier.nama)
+                $('#edit_txt_kontak').val(data.supplier.kontak)
+                $('#edit_txt_alamat').val(data.supplier.alamat)
+                $('#edit_txt_telp').val(data.supplier.telp)
+                $('#edit_txt_kota').val(data.supplier.kota)
+                var optCoa = "";
+                for (var s = 0; s < data.coa.length; s++) {
+                    optCoa += "<option value = " + data.coa[s].no_coa + ">"+ data.coa[s].no_coa+ ' - ' + data.coa[s].nama + "</option>"
+                }
+                $("#edit_sel_coa_hutang").html(optCoa)
+                $("#edit_sel_coa_hutang").val(data.supplier.coa_hutang)
+            },
+            error: function() {
                 Swal.fire('Error!', "Error Connection", 'error')
             }
         })

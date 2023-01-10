@@ -12,6 +12,7 @@ class supplier extends CI_Controller
             return;
         }
         $this->load->model('master/m_supplier');
+        $this->load->model('master/m_coa');
         $this->load->model('global_model');
     }
     public function index()
@@ -31,29 +32,42 @@ class supplier extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    function validasi_save($data_post){
+    public function show_one()
+    {
+        $data['supplier'] = $this->m_supplier->find_one($_GET['id']);
+        $data['coa'] = $this->m_coa->show_all('',1);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    function validasi($data_post,$action){
         $data = [];
         $data['status'] = 200;
         $data['msg'] = '';
 
         if($data_post['kode'] == ''){
             $data['status'] = 500;
-            $data['msg'] = 'Kode Supplier tidak boleh kosong';
-        }else{
+            $data['msg'] = 'Kode Supplier tidak boleh kosong <br>';
+        }
+        if($data_post['nama'] == ''){
+            $data['status'] = 500;
+            $data['msg'] .= 'Nama Supplier tidak boleh kosong <br>';
+        }
+        if($action == 'save'){
             $exist_name = $this->m_supplier->find_by_kode($data_post['kode']);
             if(count($exist_name) > 0){
                 $data['status'] = 500;
-                $data['msg'] = 'Kode Supplier sudah digunakan';
+                $data['msg'] .= 'Kode Supplier sudah digunakan';
             }
         }
-        
         return $data; 
     }
     public function save(){
         $data=[];
         $data['status'] = 200;
         $data['msg'] = '';
-        $do_validasi = $this->validasi_save($_POST);
+        $do_validasi = $this->validasi($_POST,'save');
         if($do_validasi['status'] == 200){
             $arr_insert = array(
                 'kode_supp'=>$_POST['kode'],
@@ -74,6 +88,41 @@ class supplier extends CI_Controller
                 $data['status'] = 500;
                 $data['respon_save']=$masukkan_data;
                 $data['msg'] = $masukkan_data['msg'];
+            }
+        }else{
+            $data['status'] = $do_validasi['status'];
+            $data['msg'] = $do_validasi['msg'];
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header($data['status'])
+            ->set_output(json_encode($data));
+    }
+    public function edit(){
+        $data=[];
+        $data['status'] = 200;
+        $data['msg'] = '';
+
+        $do_validasi = $this->validasi($_POST,'edit');
+        if($do_validasi['status'] == 200){
+            $arr_update = array(
+                'nama'=>$_POST['nama'],
+                'kontak'=>$_POST['kontak'],
+                'alamat'=>$_POST['alamat'],
+                'kota'=>$_POST['kota'],
+                'telepon'=>$_POST['telp'],
+                'coa_hutang'=>$_POST['coa_hutang'],
+                'updated_at'=>date('Y-m-d'),
+                'updated_by'=>$_SESSION['username'],
+                'datestamp'=>date('Y-m-d H:i:s'),
+            );
+            $edit_data = $this->global_model->update_table('mstr_supplier',$arr_update,"id = " . $_POST['id']);
+            $data['msg'] = 'Berhasil diedit';
+
+            if($edit_data['status'] != 200){
+                $data['status'] = 500;
+                $data['respon_save']=$edit_data;
+                $data['msg'] = $edit_data['msg'];
             }
         }else{
             $data['status'] = $do_validasi['status'];

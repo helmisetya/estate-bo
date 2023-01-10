@@ -46,8 +46,8 @@
                                     <td><?= $row->periode;?></td>
                                     <td><?= $row->dept; ?></td>
                                     <td><?= $row->subdept; ?></td>
-                                    <td><?= $row->adjusment; ?></td>
-                                    <td><?= $row->rapb; ?></td>
+                                    <td><?= $row->adjustment; ?></td>
+                                    <td><?= floatval($row->rapb); ?></td>
                                 </tr>
                             <?php }
                             ?>    

@@ -17,4 +17,10 @@ class m_supplier extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    function find_one($id){
+        $this->db->from('mstr_supplier');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        return $query->row();
+    }
 }

@@ -25,6 +25,7 @@
     <script src="<?= base_url()?>/assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?= base_url()?>/assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="<?= base_url()?>/assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    
     <!-- Bootstrap -->
     <script src="<?= base_url()?>/assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- select 2 -->
@@ -85,6 +86,7 @@
             [10, 25, 50, "All"]
           ]
         });
+        $(".scroll_able").DataTable({scrollX : true});
         $("#moneyInput, #money_input, .currency_input, .money").maskMoney({
           // prefix: 'Rp ',
           thousands: '.',
