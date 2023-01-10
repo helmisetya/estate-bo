@@ -25,7 +25,7 @@ class customer extends CI_Controller
     }
     public function fetch_coa(){
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('');
+        $data['coa'] = $this->m_coa->show_all('',1);
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)

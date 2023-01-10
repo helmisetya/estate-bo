@@ -114,7 +114,7 @@
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('master/lokasi_kav')?>">Lokasi Kavling</a></li>
                       <li><a href="<?= site_url('master/kavling')?>">Kavling</a></li>
-                      <li><a href="<?= site_url('master/barang')?>">Barang</a></li>
+                      <!-- <li><a href="<?= site_url('master/barang')?>">Barang</a></li> -->
                       <li><a href="<?= site_url('master/customer')?>">Customer</a></li>
                       <li><a href="<?= site_url('master/supplier')?>">Supplier</a></li>
                       <li><a href="index3.html">Sales</a></li>

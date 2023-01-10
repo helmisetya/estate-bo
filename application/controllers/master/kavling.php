@@ -31,7 +31,7 @@ class kavling extends CI_Controller
     {
         $data['status'] = 200;
         $data['msg'] = 'OK';
-        $dt_kav = $this->m_kav->fetch_data($_POST['lok']);
+        $dt_kav = $this->m_kav->fetch_data(($_POST['lok']));
         if($dt_kav['status'] == 200){
             $data['html'] = '';
             $no = 1;
@@ -57,15 +57,25 @@ class kavling extends CI_Controller
             ->set_status_header($data['status'])
             ->set_output(json_encode($data));
     }
-    function validasi_save($data_post){
+    function validasi_save($data_post,$action){
         $data = [];
         $data['status'] = 200;
-        $data['msg'] = 'OK';
+        $data['msg'] = '';
 
-        $exist_name = $this->m_kav->find_by_kode($data_post['kode_kavling']);
-        if(count($exist_name) > 0){
+        if($data_post['kode_kavling'] == ''){
             $data['status'] = 500;
-            $data['msg'] = 'Kode Kavling sudah digunakan';
+            $data['msg'] = 'Kode Kavling tidak boleh kosong <br>';
+        }
+        if($data_post['nama_pemilik'] == ''){
+            $data['status'] = 500;
+            $data['msg'] .= 'Nama Pemilik tidak boleh kosong';
+        }
+        if($action == 'save'){
+            $exist_name = $this->m_kav->find_by_kode($data_post['kode_kavling']);
+            if(count($exist_name) > 0){
+                $data['status'] = 500;
+                $data['msg'] .= 'Kode Kavling sudah digunakan <br>';
+            }
         }
         return $data; 
     }
@@ -73,7 +83,7 @@ class kavling extends CI_Controller
         $data=[];
         $data['status'] = 200;
         $data['msg'] = '';
-        $do_validasi = $this->validasi_save($_POST);
+        $do_validasi = $this->validasi_save($_POST,'save');
         if($do_validasi['status'] == 200){
             $val_sts_tagihan = isset($_POST['sts_tagihan']) ? 1 : 0;
             // if($_POST['sts_tagihan'] == 'on'){
@@ -86,7 +96,8 @@ class kavling extends CI_Controller
                 'luas_tanah'=>floatval($_POST['lt']),
                 'luas_bangunan'=>floatval($_POST['lb']),
                 'harga_jual'=>floatval(str_replace('.', '', $_POST['harga_jual'])),
-                'coa_bh'=>$_POST['coa_bh'],
+                // 'coa_bh'=>$_POST['coa_bh'],
+                'coa_retur'=>$_POST['coa_retur'],
                 'coa_jl'=>$_POST['coa_jl'],
                 'coa_piutang'=>$_POST['coa_piutang'],
                 'coa_hp'=>$_POST['coa_hp'],
@@ -96,7 +107,6 @@ class kavling extends CI_Controller
                 'status_tagihan'=>$val_sts_tagihan,
                 'nama_pemilik'=>$_POST['nama_pemilik'],
                 'telp_pemilik'=>$_POST['telp_pemilik'],
-                // 'status_tagihan'=>isset($_POST['enable'])?1:0,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'created_by'=>$_SESSION['username'],
                 'updated_at'=>date('Y-m-d H:i:s'),
@@ -118,6 +128,50 @@ class kavling extends CI_Controller
             ->set_status_header($data['status'])
             ->set_output(json_encode($data));
     }
+    public function edit(){
+        $data=[];
+        $data['status'] = 200;
+        $data['msg'] = '';
+
+        $do_validasi = $this->validasi_save($_POST,'edit');
+        if($do_validasi['status'] == 200){
+            $arr_update = array(
+                'nama'=>$_POST['nama'],
+                'type'=>$_POST['type'],
+                'luas_tanah'=>floatval($_POST['lt']),
+                'luas_bangunan'=>floatval($_POST['lb']),
+                'harga_jual'=>floatval(str_replace('.', '', $_POST['harga_jual'])),
+                // 'coa_bh'=>$_POST['coa_bh'],
+                'coa_retur'=>$_POST['coa_retur'],
+                'coa_jl'=>$_POST['coa_jl'],
+                'coa_piutang'=>$_POST['coa_piutang'],
+                'coa_hp'=>$_POST['coa_hp'],
+                'coa_titipan'=>$_POST['coa_titipan'],
+                'coa_cadangan'=>$_POST['coa_cadangan'],
+                'lokasi_kavling'=>$_POST['lok_kav'],
+                'status_tagihan'=>isset($_POST['sts_tagihan']) ? 1 : 0,
+                'nama_pemilik'=>$_POST['nama_pemilik'],
+                'telp_pemilik'=>$_POST['telp_pemilik'],
+                'updated_at'=>date('Y-m-d'),
+                'updated_by'=>$_SESSION['username'],
+            );
+            $edit_data = $this->global_model->update_table('mstr_kavling',$arr_update,"id = " . $_POST['id_kav']);
+            $data['msg'] = 'Berhasil diedit';
+
+            if($edit_data['status'] != 200){
+                $data['status'] = 500;
+                $data['respon_save']=$edit_data;
+                $data['msg'] = $edit_data['msg'];
+            }
+        }else{
+            $data['status'] = $do_validasi['status'];
+            $data['msg'] = $do_validasi['msg'];
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header($data['status'])
+            ->set_output(json_encode($data));
+    }
     public function show_one()
     {
         $data=[];
@@ -126,7 +180,7 @@ class kavling extends CI_Controller
 
         $kav = $_POST['kav'];
         $lok_kav = $this->m_lok_kav->show_all();
-        $coa_aktif = $this->m_coa->show_all('');
+        $coa_aktif = $this->m_coa->show_all('',1);
         $dt_kav = $this->m_kav->show_detail($kav);
         
         $data['detail_kav'] = $dt_kav['datanya'];

@@ -17,7 +17,7 @@ class coa extends CI_Controller
     public function index()
     {
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('');
+        $data['coa'] = $this->m_coa->show_all('',0);
         // $data['kota'] = $this->m_kota->fetch_data(1);
         $this->load->view('header');
         $this->load->view('master/v_coa',$data);
@@ -25,7 +25,15 @@ class coa extends CI_Controller
     }
     public function fetch_coa(){
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('');
+        $data['coa'] = $this->m_coa->show_all('',0);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function fetch_coa_estate(){
+        $data = [];
+        $data['coa'] = $this->m_coa->show_all('',1);
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
