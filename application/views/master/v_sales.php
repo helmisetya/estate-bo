@@ -2,7 +2,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Master Supplier</h3>
+                <h3>Master Sales</h3>
               </div>
             </div>
 
@@ -29,17 +29,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <table id="datatable-responsive" class="table table-striped table-bordered myTable" style="width:100%">
                         <thead>
                             <tr>
                             <th>Nomor</th>
-                            <th>Kode Supplier</th>
-                            <th>Nama</th>
-                            <th>Kontak</th>
+                            <th>Kode Sales</th>
+                            <th>Nama Sales</th>
+                            <th>Telepon</th>
                             <th>Alamat</th>
-                            <th>Kota</th>
-                            <th>Telp</th>
-                            <th>Coa Hutang</th>
                             <th>Aksi</th>
                             </tr>
                         </thead>
@@ -50,14 +47,11 @@
                                 ?>
                                 <tr>
                                     <td><?= $a;?></td>
-                                    <td><?= $row->kode_supp;?><br><span class="badge badge-primary">Created By: <?= $row->created_by ?></span><br><span class="badge badge-primary">Created At: <?= date('d-m-Y',strtotime($row->created_at))?></span></td>
-                                    <td><?= $row->nama; ?></td>
-                                    <td><?= $row->kontak;?></td>
+                                    <td><?= $row->kode;?><br><span class="badge badge-primary">Created By: <?= $row->created_by ?></span><br><span class="badge badge-primary">Created At: <?= date('d-m-Y',strtotime($row->created_at))?></span></td>
+                                    <td><?= $row->nama; ?><br><span class="badge badge-warning">Status : <?= ($row->status == 0)?'Tidak Aktif':'Aktif'?></span></td>
+                                    <td><?= $row->telp;?></td>
                                     <td><?= $row->alamat;?></td>
-                                    <td><?= $row->kota;?></td>
-                                    <td><?= $row->telepon;?></td>
-                                    <td><?= $row->nama_hutang;?></td>
-                                    <td><button type="button" class="btn btn btn-warning" data-supp="<?php echo $row->id; ?>" onclick="openModalEdit(this)" data-toggle="modal" data-target=".edit-modal-xl"><span class="fa fa-pencil"></span> Edit</button></td>
+                                    <td><button type="button" class="btn btn btn-warning" data-sales="<?php echo $row->id; ?>" onclick="openModalEdit(this)" data-toggle="modal" data-target=".edit-modal-xl"><span class="fa fa-pencil"></span> Edit</button></td>
                                 </tr>
                             <?php $a++; }
                             ?>    
@@ -74,11 +68,11 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                            <form id="frm_new_supp">
+                            <form id="frm_new_sales">
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Kode Supplier</label>
+                                        <label>Kode Sales</label>
                                         <input class="form-control" id="txt_kode" type="text" name="kode" required>
                                     </div>
                                 </div>
@@ -88,9 +82,9 @@
                                         <input class="form-control" id="txt_nama" type="text" name="nama" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Kontak</label>
+                                        <label>Telepon</label>
                                         <input class="form-control" id="txt_kontak" type="text" name="kontak">
                                     </div>
                                 </div>
@@ -100,26 +94,12 @@
                                         <textarea class="form-control" id="txt_alamat" name="alamat" rows=2></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-1">
                                     <div class="form-group">
-                                        <label>Telp</label>
-                                        <input class="form-control" id="txt_telp" type="text" name="telp">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Kota</label>
-                                        <input class="form-control" id="txt_kota" type="text" name="kota">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>COA Hutang</label>
-                                        <select name="coa_hutang" id="sel_coa_hutang" class="form-control select2bs4" style="width: 100%;">
-                                            
-                                        </select>
+                                        <label>Status</label>
+                                        <input type="checkbox" name="sts" data-width="70" data-toggle="toggle" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="danger">
+                                            <!-- <input type="checkbox" class="js-switch" name="sts_tagihan" checked /> Status Tagihan -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -143,11 +123,11 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                            <form id="frm_edit_supp">
+                            <form id="frm_edit_sales">
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Kode Supplier</label>
+                                        <label>Kode Sales</label>
                                         <input class="form-control" id="edit_txt_kode" type="text" name="kode" required readonly>
                                         <input type="hidden" name="id" id="hide_id">
                                     </div>
@@ -158,9 +138,9 @@
                                         <input class="form-control" id="edit_txt_nama" type="text" name="nama" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Kontak</label>
+                                        <label>Telepon</label>
                                         <input class="form-control" id="edit_txt_kontak" type="text" name="kontak">
                                     </div>
                                 </div>
@@ -170,26 +150,12 @@
                                         <textarea class="form-control" id="edit_txt_alamat" name="alamat" rows=2></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-1">
                                     <div class="form-group">
-                                        <label>Telp</label>
-                                        <input class="form-control" id="edit_txt_telp" type="text" name="telp">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Kota</label>
-                                        <input class="form-control" id="edit_txt_kota" type="text" name="kota">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>COA Hutang</label>
-                                        <select name="coa_hutang" id="edit_sel_coa_hutang" class="form-control select2bs4" style="width: 100%;">
-                                            
-                                        </select>
+                                        <label>Status</label>
+                                        <input type="checkbox" name="sts" id="edit_chk_sts" data-width="70" data-toggle="toggle" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="danger">
+                                            <!-- <input type="checkbox" class="js-switch" name="sts_tagihan" checked /> Status Tagihan -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -226,10 +192,10 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: baseUrl + '/master/supplier/save',
+                    url: baseUrl + '/master/sales/save',
                     method: 'POST',
                     dataType: 'json',
-                    data: $("#frm_new_supp").serialize(),
+                    data: $("#frm_new_sales").serialize(),
                     success:function(data){
                       Swal.fire('Sukses!', 'Data Berhasil Disimpan', 'success').then((close) => {
                                     location.reload()
@@ -256,10 +222,10 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: baseUrl + '/master/supplier/edit',
+                    url: baseUrl + '/master/sales/edit',
                     method: 'POST',
                     dataType: 'json',
-                    data: $("#frm_edit_supp").serialize(),
+                    data: $("#frm_edit_sales").serialize(),
                     success:function(data){
                       Swal.fire('Sukses!', 'Data Berhasil Disimpan', 'success').then((close) => {
                                     location.reload()
@@ -273,33 +239,10 @@
             }
         })
     }
-    function load_coa(){
-        console.log("load bos coa")
+    function openModalEdit(sales) {
+        var id = $(sales).data('sales')
         $.ajax({
-            url: baseUrl + '/master/coa/fetch_coa_estate',
-            method: 'GET',
-            dataType: 'json',
-            success : function(data){
-                var optCoa = "";
-                for (var s = 0; s < data.coa.length; s++) {
-                    optCoa += "<option value = " + data.coa[s].no_coa + ">"+ data.coa[s].no_coa+ ' - ' + data.coa[s].nama + "</option>"
-                }
-
-                $("#sel_coa_hutang").html(optCoa)
-            },
-            error : function(xhr,textStatus,error){
-                // console.log(err)
-                console.log(xhr.statusText);
-                console.log(textStatus);
-                console.log(error);
-                Swal.fire('Error!', "Error Connection", 'error')
-            }
-        })
-    }
-    function openModalEdit(supp) {
-        var id = $(supp).data('supp')
-        $.ajax({
-            url: baseUrl + '/master/supplier/show_one',
+            url: baseUrl + '/master/sales/show_one',
             method: 'GET',
             dataType: 'json',
             data: {
@@ -307,19 +250,18 @@
             },
             success: function(data) {
                 //SET VALUE
-                $('#hide_id').val(data.supplier.id)
-                $('#edit_txt_kode').val(data.supplier.kode_supp)
-                $('#edit_txt_nama').val(data.supplier.nama)
-                $('#edit_txt_kontak').val(data.supplier.kontak)
-                $('#edit_txt_alamat').val(data.supplier.alamat)
-                $('#edit_txt_telp').val(data.supplier.telp)
-                $('#edit_txt_kota').val(data.supplier.kota)
-                var optCoa = "";
-                for (var s = 0; s < data.coa.length; s++) {
-                    optCoa += "<option value = " + data.coa[s].no_coa + ">"+ data.coa[s].no_coa+ ' - ' + data.coa[s].nama + "</option>"
+                $('#hide_id').val(data.sales.id)
+                $('#edit_txt_kode').val(data.sales.kode)
+                $('#edit_txt_nama').val(data.sales.nama)
+                $('#edit_txt_kontak').val(data.sales.telp)
+                $('#edit_txt_alamat').val(data.sales.alamat)
+                if(data.sales.status == '1'){
+                    console.log("centang")
+                    $("#edit_chk_sts").attr('checked','checked');
+                    $('#edit_chk_sts').bootstrapToggle('on')
+                }else{
+                    $('#edit_chk_sts').bootstrapToggle('off')
                 }
-                $("#edit_sel_coa_hutang").html(optCoa)
-                $("#edit_sel_coa_hutang").val(data.supplier.coa_hutang)
             },
             error: function() {
                 Swal.fire('Error!', "Error Connection", 'error')

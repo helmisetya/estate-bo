@@ -117,7 +117,7 @@
                       <!-- <li><a href="<?= site_url('master/barang')?>">Barang</a></li> -->
                       <!-- <li><a href="<?= site_url('master/customer')?>">Customer</a></li> -->
                       <li><a href="<?= site_url('master/supplier')?>">Supplier</a></li>
-                      <li><a href="index3.html">Sales</a></li>
+                      <li><a href="<?= site_url('master/sales')?>">Sales</a></li>
                       <li><a href="<?= site_url('master/coa')?>">COA</a></li>
                       <li><a href="<?= site_url('master/pesentase')?>">Pesentase Income</a></li>
                     </ul>

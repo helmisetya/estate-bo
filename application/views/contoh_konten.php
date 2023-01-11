@@ -22,8 +22,7 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="bs-example" data-example-id="simple-jumbotron">
                 <div class="jumbotron">
-                    <h1 style="color:black">Selamat Datang di Sistem Informasi Estate - Back Office</h1>
-                    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                    <h1 style="color:black">Selamat Datang di Sistem Informasi Estate</h1>
                 </div>
             </div>
         </div>
