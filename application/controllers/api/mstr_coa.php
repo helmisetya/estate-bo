@@ -16,6 +16,7 @@ class mstr_coa extends CI_Controller
 
         $this->old_db = $this->load->database("old_default", true);
         $this->old_db->from('coa');
+        // $this->old_db->where('enable',0);
         $query1 = $this->old_db->get();
         $dt_coa = $query1->result();
 
@@ -31,8 +32,8 @@ class mstr_coa extends CI_Controller
                     'nama'=>$row->nama_lkp,
                     'alokasi'=>$row->alokasi,
                     'normal'=>$row->normal,
-                    'enable'=>$row->enable,
-                    'kode_thp'=>$row->kode_thp,
+                    'enable'=>intval($row->enable),
+                    'kode_thp'=>intval($row->kode_thp),
                     'created_at'=> date('Y-m-d H:i:s'),
                     'created_by'=>'programmer',
                     'updated_at'=> date('Y-m-d H:i:s'),

@@ -1,7 +1,7 @@
 <!-- footer content -->
 <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          ©2022 All Rights Reserved. KAG IT Programmer
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -25,6 +25,7 @@
     <script src="<?= base_url()?>/assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?= base_url()?>/assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="<?= base_url()?>/assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    
     <!-- Bootstrap -->
     <script src="<?= base_url()?>/assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- select 2 -->
@@ -71,6 +72,7 @@
     <script src="<?= base_url()?>/assets/build/js/custom.min.js"></script>
     <!-- inputmask -->
     <script src="<?php echo base_url() ?>/assets/build/js/jquery_maskmoney.js"></script>
+    
     <script type="text/javascript">
       $(document).ready(function(){
         
@@ -84,6 +86,7 @@
             [10, 25, 50, "All"]
           ]
         });
+        $(".scroll_able").DataTable({scrollX : true});
         $("#moneyInput, #money_input, .currency_input, .money").maskMoney({
           // prefix: 'Rp ',
           thousands: '.',

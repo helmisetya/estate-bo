@@ -50,6 +50,33 @@
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
       }
+      .jumbotron {
+        background-image:url('<?= base_url('/assets/build/images/est-house2.jpg')?>');
+        height:300px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        border-bottom:1px solid #ff6a00
+      }
+      .jumbotron .container {
+        position:relative;
+        top:50px;
+      }
+      .cv-spinner {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px #ddd solid;
+          border-top: 4px #2e93e6 solid;
+          border-radius: 50%;
+          animation: sp-anime 0.8s infinite linear;
+      }
     </style>
   </head>
 
@@ -59,7 +86,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Estate - BO</span></a>
+              <a href="<?= site_url()?>" class="site_title"><i class="fa fa-building"></i> <span>Estate - BO</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -67,7 +94,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?= base_url()?>/assets/build/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?= base_url()?>/assets/build/images/icon_gfriend.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 
@@ -87,12 +114,12 @@
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('master/lokasi_kav')?>">Lokasi Kavling</a></li>
                       <li><a href="<?= site_url('master/kavling')?>">Kavling</a></li>
-                      <li><a href="index3.html">Barang</a></li>
-                      <li><a href="<?= site_url('master/customer')?>">Customer</a></li>
-                      <li><a href="index3.html">Supplier</a></li>
-                      <li><a href="index3.html">Sales</a></li>
+                      <!-- <li><a href="<?= site_url('master/barang')?>">Barang</a></li> -->
+                      <!-- <li><a href="<?= site_url('master/customer')?>">Customer</a></li> -->
+                      <li><a href="<?= site_url('master/supplier')?>">Supplier</a></li>
+                      <li><a href="<?= site_url('master/sales')?>">Sales</a></li>
                       <li><a href="<?= site_url('master/coa')?>">COA</a></li>
-                      <li><a href="index3.html">Pesentase Income</a></li>
+                      <li><a href="<?= site_url('master/pesentase')?>">Pesentase Income</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-money"></i> Accounting <span class="fa fa-chevron-down"></span></a>
@@ -161,6 +188,11 @@
 
         <!-- top navigation -->
         <div class="top_nav">
+          <!-- <div id="top_load_overlay" class="loadingoverlay"> 
+              <div class="cv-spinner">
+                  <span class="spinner"></span>
+              </div>
+          </div> -->
           <div class="nav_menu">
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -169,7 +201,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url()?>/assets/build/images/img.jpg" alt=""><?= $_SESSION['nama']?>
+                    <img src="<?= base_url()?>/assets/build/images/icon_gfriend.png" alt=""><?= $_SESSION['nama']?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     

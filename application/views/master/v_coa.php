@@ -52,7 +52,7 @@
                         </thead>
                         <tbody>
                             <?php 
-                            foreach($cust as $row){ ?>
+                            foreach($coa as $row){ ?>
                                 <tr>
                                     <td><?= $row->no_coa;?></td>
                                     <td><?= $row->nama; ?><br><span class="badge badge-primary">Created : <?= $row->created_by?></span></td>

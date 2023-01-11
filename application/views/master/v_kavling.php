@@ -55,7 +55,7 @@
                             <tr>
                             <th>Nomor</th>
                             <th>Kode Kavling</th>
-                            <th>Nama</th>
+                            <th>Nama K  avling</th>
                             <th>Lokasi Kavling</th>
                             <th>Nama Pemilik</th>
                             <th>Telp Pemilik</th>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Nama</label>
+                                        <label>Nama Kavling</label>
                                         <input class="form-control" id="txt_nama" type="text" name="nama" required>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <div class="form-group" style="margin-top: 30px;">
+                                    <div class="form-group">
                                         <label>Status Tagihan</label>
                                         <input type="checkbox" name="sts_tagihan" data-width="120" data-toggle="toggle" data-on="Ya" data-off="Tidak" data-onstyle="success" data-offstyle="danger">
                                             <!-- <input type="checkbox" class="js-switch" name="sts_tagihan" checked /> Status Tagihan -->
@@ -166,8 +166,8 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>COA BH</label>
-                                        <select name="coa_bh" id="sel_coa_bh" class="form-control select2bs4" style="width: 100%;">
+                                        <label>COA Retur</label>
+                                        <select name="coa_retur" id="sel_coa_retur" class="form-control select2bs4" style="width: 100%;">
                                             <?php 
                                             foreach($coa_aktif as $row){ ?>
                                             <option value="<?= $row->no_coa?>"><?= $row->no_coa.' - '.$row->nama; ?></option>
@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>COA JL</label>
+                                        <label>COA Penjualan</label>
                                         <select name="coa_jl" id="sel_coa_jl" class="form-control select2bs4" style="width: 100%;">
                                             <?php 
                                             foreach($coa_aktif as $row){ ?>
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>COA HP</label>
+                                        <label>COA Hutang</label>
                                         <select name="coa_hp" id="sel_coa_hp" class="form-control select2bs4" style="width: 100%;">
                                             <?php 
                                             foreach($coa_aktif as $row){ ?>
@@ -265,12 +265,13 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Kode Kavling</label>
-                                        <input class="form-control" id="edit_txt_kode_kav" type="text" name="kode_kavling">
+                                        <input class="form-control" id="edit_txt_kode_kav" type="text" name="kode_kavling" readonly>
+                                        <input type="hidden" name="id_kav" id="hide_id_kav">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Nama</label>
+                                        <label>Nama Kavling</label>
                                         <input class="form-control" id="edit_txt_nama" type="text" name="nama">
                                     </div>
                                 </div>
@@ -341,15 +342,15 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>COA BH</label>
-                                        <select name="coa_bh" id="edit_sel_coa_bh" class="form-control select2bs4" style="width: 100%;">
+                                        <label>COA Retur</label>
+                                        <select name="coa_retur" id="edit_sel_coa_retur" class="form-control select2bs4" style="width: 100%;">
                                             
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>COA JL</label>
+                                        <label>COA Penjualan</label>
                                         <select name="coa_jl" id="edit_sel_coa_jl" class="form-control select2bs4" style="width: 100%;">
                                             
                                         </select>
@@ -357,7 +358,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>COA HP</label>
+                                        <label>COA Hutang</label>
                                         <select name="coa_hp" id="edit_sel_coa_hp" class="form-control select2bs4" style="width: 100%;">
                                             
                                         </select>
@@ -462,6 +463,36 @@
             }
         })
     }
+    function edit(){
+        Swal.fire({
+            title: 'Apakah anda yakin ingin merubah data ini?',
+            // text: "",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Simpan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl + '/master/kavling/edit',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: $("#frm_edit_kav").serialize(),
+                    success:function(data){
+                      Swal.fire('Sukses!', 'Data Berhasil Disimpan', 'success').then((close) => {
+                                    location.reload()
+                                })
+                    },
+                    error: function(err) {
+                      console.log(err)
+                      Swal.fire('Error!', err.responseJSON.msg, 'error')
+                    }
+                })
+            }
+        })
+    }
     function openModalEdit(kav){
         var kav_val = $(kav).data('idkav')
         $.ajax({
@@ -472,7 +503,7 @@
                 kav: kav_val,
             },
             success : function(data){
-                
+                $('#hide_id_kav').val(data.detail_kav.id);
                 $('#edit_txt_kode_kav').val(data.detail_kav.kode_kavling)
                 $('#edit_txt_nama').val(data.detail_kav.kode_kavling)
                 // lokasi
@@ -502,8 +533,10 @@
                 for (var s = 0; s < data.coa_aktif.length; s++) {
                     optCoa += "<option value = " + data.coa_aktif[s].no_coa + ">"+ data.coa_aktif[s].no_coa+ ' - ' + data.coa_aktif[s].nama + "</option>"
                 }
-                $("#edit_sel_coa_bh").html(optCoa)
-                $("#edit_sel_coa_bh").val(data.detail_kav.coabh)
+                // $("#edit_sel_coa_bh").html(optCoa)
+                // $("#edit_sel_coa_bh").val(data.detail_kav.coabh)
+                $("#edit_sel_coa_retur").html(optCoa)
+                $("#edit_sel_coa_retur").val(data.detail_kav.coaretur)
                 $("#edit_sel_coa_jl").html(optCoa)
                 $("#edit_sel_coa_jl").val(data.detail_kav.coajl)
                 $("#edit_sel_coa_hp").html(optCoa)
@@ -527,7 +560,7 @@
     function load_coa(){
         console.log("load bos coa")
         $.ajax({
-            url: baseUrl + '/master/coa/fetch_coa',
+            url: baseUrl + '/master/coa/fetch_coa_estate',
             method: 'GET',
             dataType: 'json',
             success : function(data){
@@ -535,7 +568,8 @@
                 for (var s = 0; s < data.coa.length; s++) {
                     optCoa += "<option value = " + data.coa[s].no_coa + ">"+ data.coa[s].no_coa+ ' - ' + data.coa[s].nama + "</option>"
                 }
-                $("#sel_coa_bh").html(optCoa)
+                // $("#sel_coa_bh").html(optCoa)
+                $("#sel_coa_retur").html(optCoa)
                 $("#sel_coa_jl").html(optCoa)
                 $("#sel_coa_hp").html(optCoa)
                 $("#sel_coa_piutang").html(optCoa)
