@@ -236,6 +236,18 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>COA Lain-lain</label>
+                                        <select name="coa_lain" id="sel_coa_lain" class="form-control select2bs4" style="width: 100%;">
+                                            <?php 
+                                            foreach($coa_aktif as $row){ ?>
+                                            <option value="<?= $row->no_coa?>"><?= $row->no_coa.' - '.$row->nama; ?></option>
+                                            <?php }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             </form>
                         </div>
@@ -384,6 +396,14 @@
                                     <div class="form-group">
                                         <label>COA Cadangan</label>
                                         <select name="coa_cadangan" id="edit_sel_coa_cadangan" class="form-control select2bs4" style="width: 100%;">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>COA Lain-lain</label>
+                                        <select name="coa_lain" id="edit_sel_coa_lain" class="form-control select2bs4" style="width: 100%;">
                                             
                                         </select>
                                     </div>
@@ -547,6 +567,8 @@
                 $("#edit_sel_coa_titipan").val(data.detail_kav.coatitipan)
                 $("#edit_sel_coa_cadangan").html(optCoa)
                 $("#edit_sel_coa_cadangan").val(data.detail_kav.coacadangan)
+                $("#edit_sel_coa_lain").html(optCoa)
+                $("#edit_sel_coa_lain").val(data.detail_kav.coalain)
             },
             error : function(xhr,textStatus,error){
                 // console.log(err)
@@ -575,6 +597,7 @@
                 $("#sel_coa_piutang").html(optCoa)
                 $("#sel_coa_titipan").html(optCoa)
                 $("#sel_coa_cadangan").html(optCoa)
+                $("#sel_coa_lain").html(optCoa)
             },
             error : function(xhr,textStatus,error){
                 // console.log(err)

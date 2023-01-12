@@ -109,6 +109,7 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
+              <h3>Accounting</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Master <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -160,27 +161,127 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Logistik <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-truck"></i> Logistik <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
-                      <li><a href="icons.html">Icons</a></li>
-                      <li><a href="glyphicons.html">Glyphicons</a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
+                      <li><a href="general_elements.html">Pembelian</a></li>
+                      <li><a>Transaksi Logistik<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li class="sub_menu"><a href="level2.html">Transfer Barang</a>
+                            </li>
+                            <li><a href="#level2_1">Konfirmasi Transfer</a>
+                            </li>
+                          </ul>
+                      </li>
+                      <li><a href="typography.html">Adjustment</a></li>
+                      <li><a href="icons.html">Pemakaian</a></li>
+                      <li><a href="glyphicons.html">Laporan Stok</a></li>
+                      <li><a href="widgets.html">Laporan Transfer Barang</a></li>
+                      <li><a href="invoice.html">Laporan Pembelian</a></li>
+                      <li><a href="inbox.html">Laporan Retur Pembelian</a></li>
+                      <li><a href="calendar.html">Laporan Hutang</a></li>
+                      <li><a href="calendar.html">Laporan Adjustment</a></li>
+                      <li><a href="calendar.html">Laporan Pemakaian</a></li>
+                      <li><a href="calendar.html">Closing Barang</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                      <li><a>Buku Besar<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="tables_dynamic.html">Buku Besar</a></li>
+                            <li><a href="tables_dynamic.html">Neraca</a></li>
+                            <li><a href="tables_dynamic.html">Penjelasan Neraca</a></li>
+                            <li><a href="tables_dynamic.html">Laba Rugi</a></li>
+                            <li><a href="tables_dynamic.html">Penjelasan Laba Rugi</a></li>
+                            <li><a href="tables_dynamic.html">Cashflow</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Kas</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Ratio</a></li>
+                            <li><a href="tables_dynamic.html">Alokasi COA</a></li>
+                            <li><a href="tables_dynamic.html">Cashflow Detail</a></li>
+                          </ul>
+                      </li>
+                      <li><a>Laporan Piutang<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="tables_dynamic.html">Laporan Piutang per Kavling</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Piutang Aging</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Pembayaran Piutang</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="typography.html">Laporan Persediaan Kavling</a></li>
+                      <li><a>Laporan Manajamen<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="tables_dynamic.html">Rekap Rugi Laba</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Rugi Laba</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Rugi Laba Cashflow</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Rugi Laba Detail</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Per Unit Usaha</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Per Unit Usaha Rekap</a></li>
+                            <li><a href="tables_dynamic.html">Grafik Rugi Laba Tahunan</a></li>
+                            <li><a href="tables_dynamic.html">Grafik Pendapatan Tahunan</a></li>
+                            <li><a href="tables_dynamic.html">Laporan Ration</a></li>
+                            <li><a href="tables_dynamic.html">Buku LM</a></li>
+                          </ul>
+                      </li> 
+                      <li><a>Laporan RK Antar Divisi<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="tables_dynamic.html">Rekap RK Piutang</a></li>
+                            <li><a href="tables_dynamic.html">Rekap RK Hutang</a></li>
+                          </ul>
+                      </li> 
+                    </ul>
+                    
+                  </li>
+                </ul>
+              </div>
+              <!-- section marketing -->
+              <div class="menu_section">
+                <h3>Marketing</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-dollar"></i> Penjualan <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Penjualan</a></li>
+                      <li><a href="#">Laporan Penjualan</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-money"></i> Payment <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Payment</a></li>
+                      <li><a href="#">Daftar Payment per Tanggal</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Laporan Income</a></li>
+                      <li><a href="#">Laporan Data Kavling</a></li>
+                      <li><a href="#">Laporan Piutang</a></li>
+                      <li><a href="#">Grafik Penjualan</a></li>
+                      <li><a href="#">Laporan Realisasi</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
+              <!-- end section marketing -->
+              <!-- section global -->
+              <div class="menu_section">
+                <h3>Tagihan</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-dollar"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Master Kalkulasi Air</a></li>
+                      <li><a href="#">Tagihan Rekening</a></li>
+                      <li><a href="#">Closing</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Nota Rekening</a></li>
+                      <li><a href="#">Rekap Tagihan</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- end section global -->
             </div>
             <!-- /sidebar menu -->
           </div>
