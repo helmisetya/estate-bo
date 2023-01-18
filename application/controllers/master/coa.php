@@ -33,7 +33,11 @@ class coa extends CI_Controller
     }
     public function fetch_coa_estate(){
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('',1);
+        $data['coa'] = $this->m_coa->show_all('',1,'');
+        $data['coa_penjualan'] = $this->m_coa->show_all('',1,'penjualan');
+        $data['coa_hutang'] = $this->m_coa->show_all('',1,'hutang');
+        $data['coa_piutang'] = $this->m_coa->show_all('',1,'piutang');
+        $data['coa_cadangan'] = $this->m_coa->show_all('',1,'cadangan');
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)

@@ -549,7 +549,7 @@
                     $('#edit_chk_sts_tagihan').bootstrapToggle('off')
                 }
 
-                var optCoa = "";
+                var optCoa = "<option value = '' >--Pilih--</option>";
                 for (var s = 0; s < data.coa_aktif.length; s++) {
                     optCoa += "<option value = " + data.coa_aktif[s].no_coa + ">"+ data.coa_aktif[s].no_coa+ ' - ' + data.coa_aktif[s].nama + "</option>"
                 }
@@ -557,15 +557,33 @@
                 // $("#edit_sel_coa_bh").val(data.detail_kav.coabh)
                 $("#edit_sel_coa_retur").html(optCoa)
                 $("#edit_sel_coa_retur").val(data.detail_kav.coaretur)
-                $("#edit_sel_coa_jl").html(optCoa)
+                var optCoa_penjualan = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_penjualan.length; s++) {
+                    optCoa_penjualan += "<option value = " + data.coa_penjualan[s].no_coa + ">"+ data.coa_penjualan[s].no_coa+ ' - ' + data.coa_penjualan[s].nama + "</option>"
+                }
+                $("#edit_sel_coa_jl").html(optCoa_penjualan)
                 $("#edit_sel_coa_jl").val(data.detail_kav.coajl)
-                $("#edit_sel_coa_hp").html(optCoa)
+
+                var optCoa_hutang = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_hutang.length; s++) {
+                    optCoa_hutang += "<option value = " + data.coa_hutang[s].no_coa + ">"+ data.coa_hutang[s].no_coa+ ' - ' + data.coa_hutang[s].nama + "</option>"
+                }
+                $("#edit_sel_coa_hp").html(optCoa_hutang)
                 $("#edit_sel_coa_hp").val(data.detail_kav.coahp)
-                $("#edit_sel_coa_piutang").html(optCoa)
+
+                var optCoa_piutang = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_piutang.length; s++) {
+                    optCoa_piutang += "<option value = " + data.coa_piutang[s].no_coa + ">"+ data.coa_piutang[s].no_coa+ ' - ' + data.coa_piutang[s].nama + "</option>"
+                }
+                $("#edit_sel_coa_piutang").html(optCoa_piutang)
                 $("#edit_sel_coa_piutang").val(data.detail_kav.coapiutang)
-                $("#edit_sel_coa_titipan").html(optCoa)
+                $("#edit_sel_coa_titipan").html(optCoa_piutang)
                 $("#edit_sel_coa_titipan").val(data.detail_kav.coatitipan)
-                $("#edit_sel_coa_cadangan").html(optCoa)
+                var optCoa_cadangan = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_cadangan.length; s++) {
+                    optCoa_cadangan += "<option value = " + data.coa_cadangan[s].no_coa + ">"+ data.coa_cadangan[s].no_coa+ ' - ' + data.coa_cadangan[s].nama + "</option>"
+                }
+                $("#edit_sel_coa_cadangan").html(optCoa_cadangan)
                 $("#edit_sel_coa_cadangan").val(data.detail_kav.coacadangan)
                 $("#edit_sel_coa_lain").html(optCoa)
                 $("#edit_sel_coa_lain").val(data.detail_kav.coalain)
@@ -586,18 +604,39 @@
             method: 'GET',
             dataType: 'json',
             success : function(data){
-                var optCoa = "";
+                var optCoa = "<option value = '' >--Pilih--</option>";
                 for (var s = 0; s < data.coa.length; s++) {
                     optCoa += "<option value = " + data.coa[s].no_coa + ">"+ data.coa[s].no_coa+ ' - ' + data.coa[s].nama + "</option>"
                 }
                 // $("#sel_coa_bh").html(optCoa)
                 $("#sel_coa_retur").html(optCoa)
-                $("#sel_coa_jl").html(optCoa)
-                $("#sel_coa_hp").html(optCoa)
-                $("#sel_coa_piutang").html(optCoa)
-                $("#sel_coa_titipan").html(optCoa)
-                $("#sel_coa_cadangan").html(optCoa)
                 $("#sel_coa_lain").html(optCoa)
+
+                var optCoa_penjualan = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_penjualan.length; s++) {
+                    optCoa_penjualan += "<option value = " + data.coa_penjualan[s].no_coa + ">"+ data.coa_penjualan[s].no_coa+ ' - ' + data.coa_penjualan[s].nama + "</option>"
+                }
+                $("#sel_coa_jl").html(optCoa_penjualan)
+                
+                var optCoa_hutang = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_hutang.length; s++) {
+                    optCoa_hutang += "<option value = " + data.coa_hutang[s].no_coa + ">"+ data.coa_hutang[s].no_coa+ ' - ' + data.coa_hutang[s].nama + "</option>"
+                }
+                $("#sel_coa_hp").html(optCoa_hutang)
+                
+                var optCoa_piutang = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_piutang.length; s++) {
+                    optCoa_piutang += "<option value = " + data.coa_piutang[s].no_coa + ">"+ data.coa_piutang[s].no_coa+ ' - ' + data.coa_piutang[s].nama + "</option>"
+                }
+                $("#sel_coa_piutang").html(optCoa_piutang)
+                $("#sel_coa_titipan").html(optCoa_piutang)
+
+                var optCoa_cadangan = "<option value = '' >--Pilih--</option>";
+                for (var s = 0; s < data.coa_cadangan.length; s++) {
+                    optCoa_cadangan += "<option value = " + data.coa_cadangan[s].no_coa + ">"+ data.coa_cadangan[s].no_coa+ ' - ' + data.coa_cadangan[s].nama + "</option>"
+                }
+                $("#sel_coa_cadangan").html(optCoa_cadangan)
+                
             },
             error : function(xhr,textStatus,error){
                 // console.log(err)

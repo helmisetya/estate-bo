@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Estate - BO</title>
+    <title>Sistem Estate</title>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url() ?>/assets/build/images/kag.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -86,7 +86,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?= site_url()?>" class="site_title"><i class="fa fa-building"></i> <span>Estate - BO</span></a>
+              <a href="<?= site_url()?>" class="site_title"><i class="fa fa-building"></i> <span>SistemEstate</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -186,7 +186,7 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a>Buku Besar<span class="fa fa-chevron-down"></span></a>
+                      <li><a>Laporan Keuangan<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <li><a href="tables_dynamic.html">Buku Besar</a></li>
                             <li><a href="tables_dynamic.html">Neraca</a></li>
@@ -207,7 +207,22 @@
                             <li><a href="tables_dynamic.html">Laporan Pembayaran Piutang</a></li>
                           </ul>
                       </li>
+                      <li><a>Laporan Marketing<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                          <li><a href="#">Laporan Income</a></li>
+                          <li><a href="#">Laporan Data Kavling</a></li>
+                          <li><a href="#">Grafik Penjualan</a></li>
+                          <li><a href="#">Laporan Realisasi</a></li>
+                          </ul>
+                      </li>
+                      <li><a>Laporan Tagihan<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                        <li><a href="#">Nota Rekening</a></li>
+                        <li><a href="#">Rekap Tagihan</a></li>
+                        </ul>
+                      </li>
                       <li><a href="typography.html">Laporan Persediaan Kavling</a></li>
+                      <li><a href="tables_dynamic.html">Buku LM</a></li>
                       <li><a>Laporan Manajamen<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <li><a href="tables_dynamic.html">Rekap Rugi Laba</a></li>
@@ -219,7 +234,7 @@
                             <li><a href="tables_dynamic.html">Grafik Rugi Laba Tahunan</a></li>
                             <li><a href="tables_dynamic.html">Grafik Pendapatan Tahunan</a></li>
                             <li><a href="tables_dynamic.html">Laporan Ration</a></li>
-                            <li><a href="tables_dynamic.html">Buku LM</a></li>
+                            
                           </ul>
                       </li> 
                       <li><a>Laporan RK Antar Divisi<span class="fa fa-chevron-down"></span></a>
@@ -249,7 +264,7 @@
                       <li><a href="#">Daftar Payment per Tanggal</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
+                  <!-- <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Laporan Income</a></li>
                       <li><a href="#">Laporan Data Kavling</a></li>
@@ -257,7 +272,7 @@
                       <li><a href="#">Grafik Penjualan</a></li>
                       <li><a href="#">Laporan Realisasi</a></li>
                     </ul>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
               <!-- end section marketing -->
@@ -272,12 +287,12 @@
                       <li><a href="#">Closing</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
+                  <!-- <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Nota Rekening</a></li>
                       <li><a href="#">Rekap Tagihan</a></li>
                     </ul>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
 

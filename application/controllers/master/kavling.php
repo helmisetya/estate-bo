@@ -182,12 +182,16 @@ class kavling extends CI_Controller
 
         $kav = $_POST['kav'];
         $lok_kav = $this->m_lok_kav->show_all();
-        $coa_aktif = $this->m_coa->show_all('',1);
+        $coa_aktif = $this->m_coa->show_all('',1,'');
         $dt_kav = $this->m_kav->show_detail($kav);
         
         $data['detail_kav'] = $dt_kav['datanya'];
         $data['lok_kav'] = $lok_kav;
         $data['coa_aktif'] = $coa_aktif;
+        $data['coa_penjualan'] = $this->m_coa->show_all('',1,'penjualan');
+        $data['coa_hutang'] = $this->m_coa->show_all('',1,'hutang');
+        $data['coa_piutang'] = $this->m_coa->show_all('',1,'piutang');
+        $data['coa_cadangan'] = $this->m_coa->show_all('',1,'cadangan');
     
         return $this->output
             ->set_content_type('application/json')

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Estate - BO</title>
+    <title>Sistem Estate </title>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url() ?>/assets/build/images/kag.png" />
     <!-- Bootstrap -->
     <link href="<?= base_url()?>/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +62,7 @@
                 <br />
 
                 <div>
-                  <h1> Estate - Back Office</h1>
+                  <h1>Sistem Estate</h1>
                   <p>©2022 All Rights Reserved. KAG IT Programmer</p>
                 </div>
               </div>
