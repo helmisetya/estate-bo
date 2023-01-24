@@ -280,13 +280,9 @@
               <div class="menu_section">
                 <h3>Tagihan</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-dollar"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Master Kalkulasi Air</a></li>
-                      <li><a href="#">Tagihan Rekening</a></li>
-                      <li><a href="#">Closing</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="#"><i class="fa fa-calculator"></i>Master Kalkulasi Air</a></li>
+                  <li><a href="<?= site_url('tagihan/transaksi')?>"><i class="fa fa-dollar"></i>Tagihan Rekening</a></li>
+                  <li><a href="#"><i class="fa fa-book"></i>Closing</a></li>
                   <!-- <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Nota Rekening</a></li>

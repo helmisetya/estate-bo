@@ -92,7 +92,8 @@
           thousands: '.',
           decimal: ',',
           affixesStay: false,
-          precision: 2
+          precision: 2,
+          allowNegative : true
         });
         $('.select2').select2()
         $('.select2bs4').select2({

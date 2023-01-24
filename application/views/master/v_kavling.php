@@ -55,7 +55,7 @@
                             <tr>
                             <th>Nomor</th>
                             <th>Kode Kavling</th>
-                            <th>Nama K  avling</th>
+                            <th>Nama Kavling</th>
                             <th>Lokasi Kavling</th>
                             <th>Nama Pemilik</th>
                             <th>Telp Pemilik</th>
