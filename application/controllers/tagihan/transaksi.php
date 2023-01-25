@@ -98,4 +98,82 @@ class transaksi extends CI_Controller
         $this->load->view('tagihan/transaksi/v_insert',$data);
         $this->load->view('footer');
     }
+    function validasi_save($data_post){
+        $data = [];
+        $data['status'] = 200;
+        $data['msg'] = '';
+
+        if($data_post['no_kav'] == ''){
+            $data['status'] = 500;
+            $data['msg'] = 'Kavling tidak boleh kosong <br>';
+        }
+        if($data_post['tgl_bayar']==''){
+            $data['status'] = 500;
+            $data['msg'] .= 'Tanggal Bayar tidak boleh kosong <br>';
+        }
+        if($data['status'] == 200){
+            $cek_double = $this->m_tagihan_kav->get_tagihan($data_post['no_kav'],$data_post['periode']);
+            if(count((array)$cek_double)>0){
+                $data['status'] = 500;
+                $data['msg'] .= 'Kavling ini sudah melakukan tagihan, di periode terpilih <br>';
+            }
+        }
+        return $data;
+        
+    }
+    public function save(){
+        $data=[];
+        $data['status'] = 200;
+        $data['msg'] = '';
+
+        $do_validasi = $this->validasi_save($_POST);
+        if($do_validasi['status'] == 200){
+            $arr_insert = array(
+                'no_transaksi'=>$_POST['no_transaksi'],
+                'periode'=>$_POST['periode'],
+                'tgl_bayar'=>date('Y-m-d',strtotime($_POST['tgl_bayar'])),
+                'biaya_telp'=>floatval(str_replace('.', '', $_POST['biaya_telp'])),
+                'biaya_listrik'=>floatval(str_replace('.', '', $_POST['biaya_listrik'])),
+                'meteran_air_prev'=>floatval($_POST['meterain_air_prev']),
+                'meteran_air_now'=>floatval($_POST['meterain_air_now']),
+                'jml_pemakaian_air'=>floatval($_POST['penggunaan_air']),
+                'biaya_air'=>floatval(str_replace('.', '', $_POST['biaya_air'])),
+                'biaya_admin'=>floatval(str_replace('.', '', $_POST['biaya_admin'])),
+                'biaya_taman'=>floatval(str_replace('.', '', $_POST['biaya_taman'])),
+                'biaya_fasum'=>floatval(str_replace('.', '', $_POST['biaya_fasum'])),
+                'biaya_keamanan'=>floatval(str_replace('.', '', $_POST['biaya_keamanan'])),
+                'biaya_sampah'=>floatval(str_replace('.', '', $_POST['biaya_sampah'])),
+                'biaya_pbb'=>floatval(str_replace('.', '', $_POST['biaya_pbb'])),
+                'biaya_lain'=>floatval(str_replace('.', '', $_POST['biaya_lain'])),
+                'minus'=>isset($_POST['minus'])?1:0,
+                'koreksi'=>floatval(str_replace('.', '', $_POST['biaya_koreksi'])),
+                'keterangan'=>$_POST['keterangan'],
+                'payment_tunai'=>floatval(str_replace('.', '', $_POST['tunai'])),
+                'payment_tf'=>floatval(str_replace('.', '', $_POST['tf'])),
+                'total_tagihan'=>floatval(str_replace('.', '', $_POST['total'])),
+                'saldo_awal'=>floatval(str_replace('.', '', $_POST['saldo_awal'])),
+                'saldo_akhir'=>floatval(str_replace('.', '', $_POST['saldo_akhir'])),
+                'old_kode'=>substr($_POST['no_transaksi'],7),
+                'id_kav'=>$_POST['no_kav'],
+                'created_at'=>date('Y-m-d H:i:s'),
+                'created_by'=>$_SESSION['username'],
+                'updated_at'=>date('Y-m-d H:i:s'),
+                'updated_by'=>$_SESSION['username'],
+            );
+            $masukkan_data = $this->global_model->insert_table('default','tagihan_kavling',$arr_insert);
+            $data['msg'] = 'Berhasil simpan';
+            if($masukkan_data['status'] != 200){
+                $data['status'] = 500;
+                $data['respon_save']=$masukkan_data;
+                $data['msg'] = $masukkan_data['msg'];
+            }
+        }else{
+            $data['status'] = $do_validasi['status'];
+            $data['msg'] = $do_validasi['msg'];
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header($data['status'])
+            ->set_output(json_encode($data));
+    }
 }

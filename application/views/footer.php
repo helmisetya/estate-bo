@@ -71,10 +71,13 @@
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url()?>/assets/build/js/custom.min.js"></script>
     <!-- inputmask -->
-    <script src="<?php echo base_url() ?>/assets/build/js/jquery_maskmoney.js"></script>
+    <!-- <script src="<?php echo base_url() ?>/assets/build/js/jquery_maskmoney.js"></script> -->
+
+    <script src="<?php echo base_url() ?>/assets/vendors/plentz-jquery-maskmoney-cdbeeac/dist/jquery.maskMoney.js"></script>
+    <script src="<?php echo base_url() ?>/assets/vendors/plentz-jquery-maskmoney-cdbeeac/dist/jquery.maskMoney.min.js"></script>
     
     <script type="text/javascript">
-      $(document).ready(function(){
+      $(document).ready(function($){
         
         $(".myTable").DataTable({
           "retrieve" : true,

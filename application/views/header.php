@@ -42,6 +42,7 @@
     <link href="<?= base_url()?>/assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
+    <!-- inputmask -->
     <style>
       .vertical-center {
         margin-top: 4px;
