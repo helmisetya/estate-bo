@@ -50,4 +50,13 @@ class m_tagihan_kav extends CI_Model
 
         return $query->row();
     }
+    public function get_tagihan_by_notransaksi($no_trans){
+        $this->db->select('tagihan.*,kav.nama_pemilik,kav.kode_kavling');
+        $this->db->from('tagihan_kavling as tagihan');
+        $this->db->join('mstr_kavling as kav','tagihan.id_kav = kav.id','left');
+        $this->db->where('no_transaksi', $no_trans);
+        $query = $this->db->get();
+
+        return $query->row();
+    }
 }

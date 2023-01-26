@@ -49,7 +49,7 @@ class transaksi extends CI_Controller
                 $data['html'] .= '<td>Rp '.number_format($row->saldo_awal,0,',','.').'</td>';
                 $data['html'] .= '<td>Rp '.number_format($row->saldo_akhir,0,',','.').'</td>';
                 $data['html'] .= '<td>';
-                $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalEdit(this)" data-toggle="modal" data-target=".edit-modal">Detail / Edit</button>';
+                $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail / Edit</button>';
                 $data['html'] .= '</td>';
                 $data['html'] .= '</tr>';
                 
@@ -97,6 +97,13 @@ class transaksi extends CI_Controller
         $this->load->view('header');
         $this->load->view('tagihan/transaksi/v_insert',$data);
         $this->load->view('footer');
+    }
+    public function show_one(){
+        $data['tagihan'] = $this->m_tagihan_kav->get_tagihan_by_notransaksi($_GET['no_trans']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
     function validasi_save($data_post){
         $data = [];
