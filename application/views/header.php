@@ -100,7 +100,8 @@
               <div class="profile_info">
                 
                 <h2><?= $_SESSION['nama']?></h2>
-                <h5><small><?= $_SESSION['role']?></small></h5>
+                <h5><small><?= $_SESSION['role']?>
+                Periode : <?= date('m/Y')?></small></h5>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -281,7 +282,7 @@
               <div class="menu_section">
                 <h3>Tagihan</h3>
                 <ul class="nav side-menu">
-                  <li><a href="#"><i class="fa fa-calculator"></i>Master Kalkulasi Air</a></li>
+                  <li><a href="<?= site_url('tagihan/kalkulasi_air')?>"><i class="fa fa-calculator"></i>Master Kalkulasi Air</a></li>
                   <li><a href="<?= site_url('tagihan/transaksi')?>"><i class="fa fa-dollar"></i>Tagihan Rekening</a></li>
                   <li><a href="#"><i class="fa fa-book"></i>Closing</a></li>
                   <!-- <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
@@ -313,23 +314,7 @@
               <nav class="nav navbar-nav">
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url()?>/assets/build/images/icon_gfriend.png" alt=""><?= $_SESSION['nama']?>
-                  </a>
-                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    
-                    <a class="dropdown-item"  href="<?= site_url('/login/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                  </div>
-                </li>
-
-                <li role="presentation" class="nav-item dropdown open">
-                  <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">0</span>
-                  </a>
-                  <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                    
-                  </ul>
+                  <a class="dropdown-item"  href="<?= site_url('/login/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                 </li>
               </ul>
             </nav>

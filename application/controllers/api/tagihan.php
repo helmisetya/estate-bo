@@ -75,4 +75,46 @@ class tagihan extends CI_Controller
             ->set_status_header($data['status'])
             ->set_output(json_encode($data));
     }
+    public function move_kalkulasi_air(){
+        $data = [];
+        $data['status'] = 200;
+        $data['msg'] = [];
+
+        $this->old_db = $this->load->database("old_default", true);
+        $this->old_db->from('kalkulasi_air');
+        $query1 = $this->old_db->get();
+        $kalkulasi = $query1->result();
+        foreach($kalkulasi as $row){
+            if($row->Periode != ''){
+                $arr_insert = array(
+                    'periode'=>$row->Periode,
+                    'sewa'=>floatval($row->Sewa),
+                    'retribusi'=>floatval($row->Retribusi),
+                    'tarif1'=>floatval($row->Tarif1),
+                    'tarif1_kubik'=>floatval($row->Tarif1M3),
+                    'tarif2'=>floatval($row->Tarif2),
+                    'tarif2_kubik'=>floatval($row->Tarif2M3),
+                    'tarif3'=>floatval($row->Tarif3),
+                    'tarif3_kubik'=>floatval($row->Tarif3M3),
+                    'tarif4'=>floatval($row->Tarif4),
+                    'tarif4_kubik'=>floatval($row->Tarif4M3),
+                    'created_at'=> date('Y-m-d H:i:s'),
+                    'created_by'=>'programmer',
+                    'updated_at'=> date('Y-m-d H:i:s'),
+                    'updated_by'=>'programmer',  
+                );
+                $masukkan_data = $this->global_model->insert_table('default','mstr_kalkulasi_air',$arr_insert);
+                $data['status'] = 200;
+                $data['msg'][$row->Periode] = 'berhasil simpan';
+                if($masukkan_data['status'] != 200){
+                    $data['status'] = 500;
+                    $data['msg'][$row->periode] = $masukkan_data['msg'];
+                }
+            }
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header($data['status'])
+            ->set_output(json_encode($data));
+    }
 }

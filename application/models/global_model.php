@@ -21,7 +21,7 @@ class global_model extends CI_Model
     {
         $dt_respon=[];
         $dt_respon['status'] = 200;
-        $dt_respon['msg'] = 'update data success';
+        $dt_respon['msg'] = '';
         $this->db->where($where);
         $query    = $this->db->update($table, $data);
         $error = $this->db->error();

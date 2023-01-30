@@ -6,6 +6,7 @@ class pesentase extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        date_default_timezone_set('Asia/Jakarta');
         ini_set('max_execution_time', 0);
         if ($this->session->userdata('login_sukses') == FALSE) {
             redirect('login');
