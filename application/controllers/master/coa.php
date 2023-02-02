@@ -12,13 +12,18 @@ class coa extends CI_Controller
             redirect('login');
             return;
         }
+        
         $this->load->model('master/m_coa');
         $this->load->model('global_model');
     }
     public function index()
     {
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('',0);
+        if($_SESSION['role'] != 'Programmer' && $_SESSION['role'] != 'Accounting Direksi'){
+            redirect('Akses_user');
+            return;
+        }
+        $data['coa'] = $this->m_coa->show_all('',0,'');
         // $data['kota'] = $this->m_kota->fetch_data(1);
         $this->load->view('header');
         $this->load->view('master/v_coa',$data);

@@ -100,7 +100,7 @@
               <div class="profile_info">
                 
                 <h2><?= $_SESSION['nama']?></h2>
-                <h5><small><?= $_SESSION['role']?>
+                <h5><small><?= $_SESSION['role']?><br>
                 Periode : <?= date('m/Y')?></small></h5>
               </div>
             </div>
