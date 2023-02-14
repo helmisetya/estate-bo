@@ -1,5 +1,11 @@
 <div class="right_col" role="main">
+        
           <div class="">
+            <div id="search_load_overlay" class="loadingoverlay"> 
+                <div class="cv-spinner">
+                    <span class="spinner"></span>
+                </div>
+            </div>
             <div class="page-title">
               <div class="title_left">
                 <h3>Tagihan Kavling</h3>
@@ -407,6 +413,9 @@
                 tahun: tahun,
                 bulan: textBulan
             },
+            beforeSend:function(){
+                $("#search_load_overlay").fadeIn();
+            },
             success:function(data){
                 if(data.html != ''){
                     $('.tbl_transaksi').show()
@@ -416,6 +425,9 @@
                     });
                 }
                 console.log("isoo")
+            },
+            complete: function() {
+                $("#search_load_overlay").fadeOut();
             },
             error:function(err){
                 Swal.fire('Error!', "Error Connection", 'error')

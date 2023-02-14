@@ -32,7 +32,7 @@ class tagihan extends CI_Controller
                     'no_transaksi'=>$no_trans,
                     'periode'=>$row->periode,
                     'tgl_bayar'=>date('Y-m-d', strtotime($row->tgl_bayar)),
-                    'telepon'=>'',
+                    // 'telepon'=>'',
                     'biaya_telp'=>floatval($row->pemakaian_telepon),
                     'biaya_listrik'=>floatval($row->pemakaian_listrik),
                     'meteran_air_prev'=>floatval($row->meteran_air_bulan_lalu),

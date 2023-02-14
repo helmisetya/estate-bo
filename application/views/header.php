@@ -69,7 +69,15 @@
           justify-content: center;
           align-items: center;
       }
-
+      .loadingoverlay {
+          position: fixed;
+          top: 0;
+          z-index: 100;
+          width: 100%;
+          height: 100%;
+          display: none;
+          background: rgba(0,0,0,0.6);
+      }
       .spinner {
           width: 40px;
           height: 40px;
@@ -219,7 +227,7 @@
                       </li>
                       <li><a>Laporan Tagihan<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                        <li><a href="#">Nota Rekening</a></li>
+                        <li><a href="<?= site_url('laporan/tagihan/nota_rekening')?>">Nota Rekening</a></li>
                         <li><a href="#">Rekap Tagihan</a></li>
                         </ul>
                       </li>

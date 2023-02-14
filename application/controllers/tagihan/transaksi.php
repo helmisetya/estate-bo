@@ -41,20 +41,27 @@ class transaksi extends CI_Controller
         $dt_tagihan_kav = $this->m_tagihan_kav->search_data_home($periode,$_POST['tahun']);
         if($dt_tagihan_kav['status'] == 200){
             $data['html'] = '';
-            foreach($dt_tagihan_kav['datanya'] as $row){
-                $data['html'] .= '<tr>';
-                $data['html'] .= '<td>'.$row->no_transaksi.'<br><span class="badge badge-primary">Created By : '.$row->created_by.'</span>  <span class="badge badge-primary">Created At : '.$row->created_at.'</span></td>';
-                $data['html'] .= '<td>'.$row->kode_kavling.'</td>';
-                $data['html'] .= '<td>'.$row->periode.'</td>';
-                $data['html'] .= '<td>Rp '.number_format($row->total_tagihan,0,',','.').'</td>';
-                $data['html'] .= '<td>Rp '.number_format($row->saldo_awal,0,',','.').'</td>';
-                $data['html'] .= '<td>Rp '.number_format($row->saldo_akhir,0,',','.').'</td>';
-                $data['html'] .= '<td>';
-                $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail / Edit</button>';
-                $data['html'] .= '</td>';
-                $data['html'] .= '</tr>';
-                
-            }
+            // if(count((array)$dt_tagihan_kav['datanya'])>0){
+                foreach($dt_tagihan_kav['datanya'] as $row){
+                    $data['html'] .= '<tr>';
+                    $data['html'] .= '<td>'.$row->no_transaksi.'<br><span class="badge badge-primary">Created By : '.$row->created_by.'</span>  <span class="badge badge-primary">Created At : '.$row->created_at.'</span></td>';
+                    $data['html'] .= '<td>'.$row->kode_kavling.'</td>';
+                    $data['html'] .= '<td>'.$row->periode.'</td>';
+                    $data['html'] .= '<td>Rp '.number_format($row->total_tagihan,0,',','.').'</td>';
+                    $data['html'] .= '<td>Rp '.number_format($row->saldo_awal,0,',','.').'</td>';
+                    $data['html'] .= '<td>Rp '.number_format($row->saldo_akhir,0,',','.').'</td>';
+                    $data['html'] .= '<td>';
+                    $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail / Edit</button>';
+                    $data['html'] .= '</td>';
+                    $data['html'] .= '</tr>';
+                    
+                }
+            // }else{
+            //     $data['html'] .= '<tr>';
+            //     $data['html'] .= '<td colspan="7">Data Tidak Ada</td>';
+            //     $data['html'] .= '</tr>';
+            // }
+            
         }
         return $this->output
         ->set_content_type('application/json')

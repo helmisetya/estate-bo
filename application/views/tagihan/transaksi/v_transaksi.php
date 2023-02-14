@@ -410,6 +410,9 @@
                     $('#dataTableTransaksi').DataTable({
                         fixedHeader: true,
                     });
+                }else{
+                    Swal.fire('Peringatan!','Data tidak ditemukan!','warning')
+                    
                 }
                 console.log("isoo")
             },
