@@ -66,6 +66,7 @@ class nota_rekening extends CI_Controller
     }
     public function cetak(){
         // print_r($_POST);
+        $bulan = get_bulan_periode($_POST['bulan']);
         $pdf = new FPDF('P', 'mm', 'A5');
         $pdf->SetAutoPageBreak(true, 5);
         foreach($_POST['centang'] as $centang){
@@ -76,7 +77,7 @@ class nota_rekening extends CI_Controller
             $pdf->Cell(38, 7, 'KUSUMA ESTATE', 0, 1,'L');
             $pdf->SetFont('Arial', '', 11);
             $pdf->Cell(38, 6, '0341-597901', 0, 1,'L');
-            $pdf->Cell(38, 6, 'TAGIHAN UNTUK BULAN '.$_POST['bulan'].'/'.$_POST['tahun'], 0, 1,'L');
+            $pdf->Cell(38, 6, 'TAGIHAN UNTUK BULAN '.$bulan.'/'.$_POST['tahun'], 0, 1,'L');
             $pdf->Line(10, 30, $pdf->GetPageWidth()-10, 30);
             $pdf->Cell(38, 4, '', 0, 1,'L');
             //ISI
@@ -175,8 +176,4 @@ class nota_rekening extends CI_Controller
         
         $pdf->output();
     }
-
-    function setup_header(){
-        
-    } 
 }

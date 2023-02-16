@@ -228,7 +228,7 @@
                       <li><a>Laporan Tagihan<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                         <li><a href="<?= site_url('laporan/tagihan/nota_rekening')?>">Nota Rekening</a></li>
-                        <li><a href="#">Rekap Tagihan</a></li>
+                        <li><a href="<?= site_url('laporan/tagihan/rekap')?>">Rekap Tagihan</a></li>
                         </ul>
                       </li>
                       <li><a href="typography.html">Laporan Persediaan Kavling</a></li>
