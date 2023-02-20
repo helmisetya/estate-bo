@@ -73,6 +73,7 @@
                             <th>Jumlah Tagihan</th>
                             <th>Saldo Awal</th>
                             <th>Saldo Akhir</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                             </tr>
                         </thead>

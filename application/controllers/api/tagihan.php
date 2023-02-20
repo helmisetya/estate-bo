@@ -28,6 +28,11 @@ class tagihan extends CI_Controller
                 if(count((array)$dt_kav)>0){
                     $id_kav = $dt_kav[0]->id;
                 }
+                $total = floatval($row->pemakaian_telepon) + floatval($row->pemakaian_listrik) + floatval($row->Air) + floatval($row->Administrasi) + floatval($row->Taman) + floatval($row->Keamanan) + floatval($row->Sampah) + floatval($row->PBB) + floatval($row->Lainlain);
+                $sts = 0;
+                if($total > 0){
+                    $sts = 1;
+                }
                 $arr_insert = array(
                     'no_transaksi'=>$no_trans,
                     'periode'=>$row->periode,
@@ -50,7 +55,7 @@ class tagihan extends CI_Controller
                     'koreksi'=>floatval($row->Koreksi),
                     'payment_tunai'=>floatval($row->tunai),
                     'payment_tf'=>floatval($row->transfer),
-                    'total_tagihan'=>floatval($row->tunai) + floatval($row->transfer),
+                    'total_tagihan'=>floatval($total),
                     'keterangan'=>$row->Keterangan,
                     'old_kode'=>$row->kode,
                     'id_kav'=>$id_kav,
@@ -59,7 +64,8 @@ class tagihan extends CI_Controller
                     'created_at'=> date('Y-m-d H:i:s'),
                     'created_by'=>'programmer',
                     'updated_at'=> date('Y-m-d H:i:s'),
-                    'updated_by'=>'programmer',  
+                    'updated_by'=>'programmer',
+                    'status'=>  $sts
                 );
                 $masukkan_data = $this->global_model->insert_table('default','tagihan_kavling',$arr_insert);
                 $data['status'] = 200;

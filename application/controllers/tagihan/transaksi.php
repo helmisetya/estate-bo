@@ -43,6 +43,18 @@ class transaksi extends CI_Controller
             $data['html'] = '';
             // if(count((array)$dt_tagihan_kav['datanya'])>0){
                 foreach($dt_tagihan_kav['datanya'] as $row){
+                    $txt_status = 'Tagihan Selesai';
+                    switch($row->status){
+                        case 0 : 
+                            $txt_status = 'Tagihan belum di buat';
+                        break;
+                        case 1 : 
+                            $txt_status = 'Tagihan sudah di buat';
+                        break;
+                        case 2 : 
+                            $txt_status = 'Tagihan sudah di tagihkan';
+                        break;
+                    }
                     $data['html'] .= '<tr>';
                     $data['html'] .= '<td>'.$row->no_transaksi.'<br><span class="badge badge-primary">Created By : '.$row->created_by.'</span>  <span class="badge badge-primary">Created At : '.$row->created_at.'</span></td>';
                     $data['html'] .= '<td>'.$row->kode_kavling.'</td>';
@@ -50,6 +62,7 @@ class transaksi extends CI_Controller
                     $data['html'] .= '<td>Rp '.number_format($row->total_tagihan,0,',','.').'</td>';
                     $data['html'] .= '<td>Rp '.number_format($row->saldo_awal,0,',','.').'</td>';
                     $data['html'] .= '<td>Rp '.number_format($row->saldo_akhir,0,',','.').'</td>';
+                    $data['html'] .= '<td>'.$txt_status.'</td>';
                     $data['html'] .= '<td>';
                     $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail / Edit</button>';
                     $data['html'] .= '</td>';

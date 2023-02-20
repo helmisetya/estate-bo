@@ -3,9 +3,10 @@ class m_tagihan_kav extends CI_Model
 {
     public function search_data_home($periode,$tahun){
         $this->db = $this->load->database('default', true);
-        $this->db->select('tagihan.no_transaksi,kav.kode_kavling,tagihan.periode,tagihan.total_tagihan,tagihan.saldo_awal,tagihan.saldo_akhir,tagihan.created_at,tagihan.created_by');
+        $this->db->select('tagihan.no_transaksi,kav.kode_kavling,tagihan.periode,tagihan.total_tagihan,tagihan.saldo_awal,tagihan.saldo_akhir,tagihan.created_at,tagihan.created_by,tagihan.status');
         $this->db->from('tagihan_kavling as tagihan');
         $this->db->join('mstr_kavling as kav','tagihan.id_kav = kav.id','left');
+        $this->db->where('kav.status_tagihan', 1);
         if($periode != "all"){
             $this->db->where('tagihan.periode', $periode);
         }else{
