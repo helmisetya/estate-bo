@@ -7,8 +7,12 @@ class m_nota extends CI_Model
         $this->db->from('tagihan_kavling as tag');
         $this->db->join('mstr_kavling as kav','tag.id_kav = kav.id');
         $this->db->join('mstr_lokasi_kav as lok_kav','kav.lokasi_kavling = lok_kav.id');
-        $this->db->where('lok_kav.id', $lok_kav);
+        if($lok_kav != 0){
+            $this->db->where('lok_kav.id', $lok_kav);
+        }
+        
         $this->db->where('tag.periode', $periode);
+        $this->db->where('kav.status_tagihan', 1);
         $query = $this->db->get();
         $error = $this->db->error();
         if(!empty($error['message'])){

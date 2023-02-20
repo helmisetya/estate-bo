@@ -50,6 +50,15 @@ class m_tagihan_kav extends CI_Model
 
         return $query->row();
     }
+    public function get_last_tagihan($kav){
+        $this->db->from('tagihan_kavling');
+        $this->db->where('id_kav', $kav);
+        $this->db->order_by('id', 'DESC');
+        $this->db->order_by('tgl_bayar', 'DESC');
+        $query = $this->db->get();
+
+        return $query->row();
+    }
     public function get_tagihan_by_notransaksi($no_trans){
         $this->db->select('tagihan.*,kav.nama_pemilik,kav.kode_kavling');
         $this->db->from('tagihan_kavling as tagihan');

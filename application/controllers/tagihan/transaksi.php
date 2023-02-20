@@ -89,7 +89,7 @@ class transaksi extends CI_Controller
             $text_prevBulan = get_bulan_periode($prev_bulan);
             $prev_periode = $text_prevBulan . '/' . $tahun;
             $data['prev'] = $prev_periode;
-            $data['last_tagihan'] = $this->m_tagihan_kav->get_tagihan($_GET['kav'],$prev_periode);
+            $data['last_tagihan'] = $this->m_tagihan_kav->get_last_tagihan($_GET['kav']);
         }
         
 

@@ -32,14 +32,19 @@ class rekap extends CI_Controller
         $dt_tagihan = $this->m_rekap->tag_perperiode($periode);
         $data['periode'] = $periode;
         $data['tagihan'] = $dt_tagihan['datanya'];
+
+        // print_r($data['tagihan']);
+
         $newMpdf = new \Mpdf\Mpdf();
         $newMpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
         $data_print = $this->load->view('laporan/tagihan/cetak_rekap', $data, TRUE);
+        // echo $data_print;
+        // die();
         $chunks = str_split($data_print,5000);
-        foreach($chunks as $chunk){
-            $newMpdf->WriteHTML($chunk);
-        }
-        
+        // foreach($chunks as $chunk){
+        //     $newMpdf->WriteHTML($chunk);
+        // }
+        $newMpdf->WriteHTML($data_print);
         $newMpdf->Output();
     }
     public function cetak_fpdf(){

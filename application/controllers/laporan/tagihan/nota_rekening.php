@@ -92,9 +92,9 @@ class nota_rekening extends CI_Controller
                 $pdf->Cell(30, 6, 'Telepon/HP', 0, 0,'L');
                 $pdf->Cell(7, 6, ':', 0, 0,'L');
                 $pdf->Cell(30, 6, $dt_tagihan['datanya']->telp_pemilik, 0, 1,'L');
-                $pdf->Cell(30, 6, 'Saldo Awal', 0, 0,'L');
-                $pdf->Cell(7, 6, ':', 0, 0,'L');
-                $pdf->Cell(30, 6,'Rp '.number_format($dt_tagihan['datanya']->saldo_awal,0,',','.'), 0, 1,'L');
+                // $pdf->Cell(30, 6, 'Saldo Awal', 0, 0,'L');
+                // $pdf->Cell(7, 6, ':', 0, 0,'L');
+                // $pdf->Cell(30, 6,'Rp '.number_format($dt_tagihan['datanya']->saldo_awal,0,',','.'), 0, 1,'L');
                 //PEMBAYARAN
                 $pdf->Cell(30, 6, 'Pembayaran', 0, 1,'L');
                     $pdf->Cell(4, 6, '', 0, 0,'R');//bohongan
@@ -162,9 +162,9 @@ class nota_rekening extends CI_Controller
                 $pdf->Cell(44, 6, 'Tagihan Bulan Ini', 0, 0,'L');
                 $pdf->Cell(40, 6, ':', 0, 0,'C');
                 $pdf->Cell(45, 6, 'Rp '.number_format($dt_tagihan['datanya']->total_tagihan,0,',','.'), 0, 1,'R');
-                $pdf->Cell(44, 6, 'Saldo Akhir', 0, 0,'L');
-                $pdf->Cell(40, 6, ':', 0, 0,'C');
-                $pdf->Cell(45, 6, 'Rp '.number_format($dt_tagihan['datanya']->saldo_akhir,0,',','.'), 0, 1,'R');
+                // $pdf->Cell(44, 6, 'Saldo Akhir', 0, 0,'L');
+                // $pdf->Cell(40, 6, ':', 0, 0,'C');
+                // $pdf->Cell(45, 6, 'Rp '.number_format($dt_tagihan['datanya']->saldo_akhir,0,',','.'), 0, 1,'R');
                 $pdf->SetFont('Arial', '', 9);
                 $kata = "BCA a/n PT.KUSUMA GRAHAJAYATRISNA "."\r\n"."Rek : 0193789789 \r\nMohon diberi keterangan Nomor Kavling \r\nContact : 0341-599036 / WA : 08883300540";
                 $pdf->MultiCell(128, 4, $kata,1);
