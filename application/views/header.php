@@ -292,7 +292,7 @@
                 <ul class="nav side-menu">
                   <li><a href="<?= site_url('tagihan/kalkulasi_air')?>"><i class="fa fa-calculator"></i>Master Kalkulasi Air</a></li>
                   <li><a href="<?= site_url('tagihan/transaksi')?>"><i class="fa fa-dollar"></i>Tagihan Rekening</a></li>
-                  <li><a href="#"><i class="fa fa-book"></i>Closing</a></li>
+                  <li><a href="<?= site_url('tagihan/closing')?>"><i class="fa fa-book"></i>Closing</a></li>
                   <!-- <li><a><i class="fa fa-line-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Nota Rekening</a></li>

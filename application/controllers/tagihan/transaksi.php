@@ -64,7 +64,7 @@ class transaksi extends CI_Controller
                     $data['html'] .= '<td>Rp '.number_format($row->saldo_akhir,0,',','.').'</td>';
                     $data['html'] .= '<td>'.$txt_status.'</td>';
                     $data['html'] .= '<td>';
-                    $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail / Edit</button>';
+                    $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail</button>';
                     $data['html'] .= '</td>';
                     $data['html'] .= '</tr>';
                     

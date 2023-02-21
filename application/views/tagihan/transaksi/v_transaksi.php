@@ -64,7 +64,7 @@
                     </div>
                     <div class="row tbl_transaksi" style="display: none;">
                         <div class="col-md-12">
-                        <table id="dataTableTransaksi" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <table id="dataTableTransaksi" class="table table-striped table-bordered myTable" style="width:100%">
                         <thead>
                             <tr>
                             <th>Nomor Transaksi</th>
