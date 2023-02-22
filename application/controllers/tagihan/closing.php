@@ -89,6 +89,10 @@ class closing extends CI_Controller
         if(count($prev_tagihan)>0){
             foreach($prev_tagihan as $row){
                 $total = $row->biaya_taman+$row->biaya_fasum+$row->biaya_keamanan+$row->biaya_sampah;
+                $saldo_akhir_new = $row->saldo_akhir - $total;
+                if($row->saldo_akhir < 0){
+                    $saldo_akhir = $row->saldo_akhir + $total;
+                }
                 $arr_insert = array(
                     'no_transaksi'=>'INV-TG-'.$next_periode.$row->kode_kavling,
                     'periode'=>$next_periode,
@@ -96,7 +100,7 @@ class closing extends CI_Controller
                     'biaya_listrik'=>0,
                     'meteran_air_prev'=>$row->meteran_air_now,
                     'meteran_air_now'=>0,
-                    'jml_pemakaian_air'=>$row->meteran_air_now,
+                    'jml_pemakaian_air'=>0,
                     'biaya_admin'=>0,
                     'biaya_taman'=>$row->biaya_taman,
                     'biaya_fasum'=>$row->biaya_fasum,
@@ -110,7 +114,7 @@ class closing extends CI_Controller
                     'payment_tf'=>0,
                     'total_tagihan'=>$total,
                     'saldo_awal'=>$row->saldo_akhir,
-                    'saldo_akhir'=>0,
+                    'saldo_akhir'=>$saldo_akhir_new,
                     'old_kode'=>$next_periode.$row->kode_kavling,
                     'id_kav'=>$row->id_kav,
                     'created_at'=> date('Y-m-d H:i:s'),

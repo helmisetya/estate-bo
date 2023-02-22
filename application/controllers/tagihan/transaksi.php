@@ -15,6 +15,7 @@ class transaksi extends CI_Controller
         // $this->load->model('master/m_supplier');
         $this->load->model('tagihan/m_tagihan_kav');
         $this->load->helper('bulan_tahun');
+        // $this->load->helper('config');
         $this->load->model('global_model');
     }
     public function index()
@@ -63,8 +64,13 @@ class transaksi extends CI_Controller
                     $data['html'] .= '<td>Rp '.number_format($row->saldo_awal,0,',','.').'</td>';
                     $data['html'] .= '<td>Rp '.number_format($row->saldo_akhir,0,',','.').'</td>';
                     $data['html'] .= '<td>'.$txt_status.'</td>';
+
+                    $key = $this->config->item('encryption_key');
+                    $id_enkripsi = openssl_encrypt($row->id,"AES-256-CBC",$key,0,"0123456789abcdef");
                     $data['html'] .= '<td>';
-                    $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail</button>';
+                    $url = site_url().'tagihan/transaksi/detail_tagihan/?id='.$id_enkripsi;
+                    $data['html'] .= "<a href ='".$url. "' class='btn btn btn-info'>Detail</a>";
+                    // $data['html'] .= '<button type="button" class="btn btn btn-info" data-notrans="' . $row->no_transaksi . '" onclick="openModalDetail(this)" data-toggle="modal" data-target=".edit-modal">Detail</button>';
                     $data['html'] .= '</td>';
                     $data['html'] .= '</tr>';
                     
@@ -139,13 +145,13 @@ class transaksi extends CI_Controller
             $data['status'] = 500;
             $data['msg'] .= 'Tanggal Bayar tidak boleh kosong <br>';
         }
-        if($data['status'] == 200){
-            $cek_double = $this->m_tagihan_kav->get_tagihan($data_post['no_kav'],$data_post['periode']);
-            if(count((array)$cek_double)>0){
-                $data['status'] = 500;
-                $data['msg'] .= 'Kavling ini sudah melakukan tagihan, di periode terpilih <br>';
-            }
-        }
+        // if($data['status'] == 200){
+        //     $cek_double = $this->m_tagihan_kav->get_tagihan($data_post['no_kav'],$data_post['periode']);
+        //     if(count((array)$cek_double)>0){
+        //         $data['status'] = 500;
+        //         $data['msg'] .= 'Kavling ini sudah melakukan tagihan, di periode terpilih <br>';
+        //     }
+        // }
         return $data;
         
     }
@@ -203,5 +209,80 @@ class transaksi extends CI_Controller
             ->set_content_type('application/json')
             ->set_status_header($data['status'])
             ->set_output(json_encode($data));
+    }
+    public function detail_tagihan(){
+        // echo $_GET['id'];
+        $id_asli = openssl_decrypt($_GET['id'],"AES-256-CBC",$this->config->item('encryption_key'),0,"0123456789abcdef");
+        // echo $id_asli;
+        $fetch_tagihan = $this->m_tagihan_kav->get_tagihan_by_id($id_asli);
+
+        $data['tagihan'] = $fetch_tagihan;
+        $this->load->view('header');
+        $this->load->view('tagihan/transaksi/v_form_tagihan',$data);
+        $this->load->view('footer');
+    }
+    public function update(){
+        $data=[];
+        $data['status'] = 200;
+        $data['msg'] = '';
+
+        $do_validasi = $this->validasi_save($_POST);
+        if($do_validasi['status'] == 200){
+            // $fetch_tagihan = $this->m_tagihan_kav->get_tagihan_by_id($_POST['id_transaksi']);
+            $next_status = 1;
+            $kata_status = 'Tagihan sudah di buat';
+            switch($_POST['status']){
+                case 1:
+                    $next_status = 2;
+                    $kata_status = 'Tagihan sudah di tagihankan';
+                break;
+                case 2:
+                    $next_status = 3;
+                    $kata_status = 'Tagihan sudah di bayar / Selesai';
+                break;
+            }
+            $arr_update = array(
+                'tgl_bayar'=>date('Y-m-d',strtotime($_POST['tgl_bayar'])),
+                'biaya_telp'=>floatval(str_replace('.', '', $_POST['biaya_telp'])),
+                'biaya_listrik'=>floatval(str_replace('.', '', $_POST['biaya_listrik'])),
+                'meteran_air_prev'=>floatval($_POST['meterain_air_prev']),
+                'meteran_air_now'=>floatval($_POST['meterain_air_now']),
+                'jml_pemakaian_air'=>floatval($_POST['penggunaan_air']),
+                'biaya_air'=>floatval(str_replace('.', '', $_POST['biaya_air'])),
+                'biaya_admin'=>floatval(str_replace('.', '', $_POST['biaya_admin'])),
+                'biaya_taman'=>floatval(str_replace('.', '', $_POST['biaya_taman'])),
+                'biaya_fasum'=>floatval(str_replace('.', '', $_POST['biaya_fasum'])),
+                'biaya_keamanan'=>floatval(str_replace('.', '', $_POST['biaya_keamanan'])),
+                'biaya_sampah'=>floatval(str_replace('.', '', $_POST['biaya_sampah'])),
+                'biaya_pbb'=>floatval(str_replace('.', '', $_POST['biaya_pbb'])),
+                'biaya_lain'=>floatval(str_replace('.', '', $_POST['biaya_lain'])),
+                'minus'=>isset($_POST['minus'])?1:0,
+                'koreksi'=>floatval(str_replace('.', '', $_POST['biaya_koreksi'])),
+                'keterangan'=>$_POST['keterangan'],
+                'payment_tunai'=>floatval(str_replace('.', '', $_POST['tunai'])),
+                'payment_tf'=>floatval(str_replace('.', '', $_POST['tf'])),
+                'total_tagihan'=>floatval(str_replace('.', '', $_POST['total'])),
+                'saldo_awal'=>floatval(str_replace('.', '', $_POST['saldo_awal'])),
+                'saldo_akhir'=>floatval(str_replace('.', '', $_POST['saldo_akhir'])),
+                'status'=>$next_status
+            );
+            $edit_data = $this->global_model->update_table('tagihan_kavling',$arr_update,"id = " . $_POST['id_transaksi']);
+            if($edit_data['status'] != 200){
+                $data['status'] = 500;
+                $data['msg'] = $edit_data['msg'];
+            }else{
+                $data['msg'] = 'Data berhasil di simpan, status tagihan saat ini : '.$kata_status;
+            }
+        }else{
+            $data['status'] = $do_validasi['status'];
+            $data['msg'] = $do_validasi['msg'];
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header($data['status'])
+            ->set_output(json_encode($data));
+       
+
+
     }
 }

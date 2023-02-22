@@ -16,6 +16,10 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div id="loading-modal" style="display: none;">
+                        <div class="swal2-icon swal2-spinner swal2-animate-spin" style="display: block;"></div>
+                        <div class="swal2-content">Loading...</div>
+                    </div>
                     <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -361,7 +365,14 @@
 <script>
     var baseUrl = $('#valBaseUrl').val();
     var body = $('body');
-
+    const loadingModal = Swal.mixin({
+            backdrop: 'rgba(0,0,0,0.5)',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+    });
     body.on('change','#txt_tglBayar',function(e){
         generate_noTransaksi()
     })
@@ -404,6 +415,9 @@
                 tahun: tahun,
                 bulan: textBulan
             },
+            beforeSend : function(){
+                loadingModal.fire()
+            },
             success:function(data){
                 if(data.html != ''){
                     $('.tbl_transaksi').show()
@@ -415,7 +429,10 @@
                     Swal.fire('Peringatan!','Data tidak ditemukan!','warning')
                     
                 }
-                console.log("isoo")
+                // console.log("isoo")
+            },
+            complete : function(){
+                loadingModal.close()
             },
             error:function(err){
                 Swal.fire('Error!', "Error Connection", 'error')
