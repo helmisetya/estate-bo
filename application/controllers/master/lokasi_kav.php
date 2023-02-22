@@ -7,6 +7,7 @@ class lokasi_kav extends CI_Controller
     {
         parent::__construct();
         ini_set('max_execution_time', 0);
+        date_default_timezone_set('Asia/Jakarta');
         if ($this->session->userdata('login_sukses') == FALSE) {
             redirect('login');
             return;

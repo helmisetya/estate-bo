@@ -1,0 +1,5 @@
+status tagihan : 
+0 = Tagihan belum di buat
+1 = Tagihan sudah di buat
+2 = Tagihan sudah di tagihankan 
+3 = Tagihan selesai 

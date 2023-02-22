@@ -7,6 +7,7 @@ class kavling extends CI_Controller
     {
         parent::__construct();
         ini_set('max_execution_time', 0);
+        date_default_timezone_set('Asia/Jakarta');
         if ($this->session->userdata('login_sukses') == FALSE) {
             redirect('login');
             return;
@@ -103,6 +104,7 @@ class kavling extends CI_Controller
                 'coa_hp'=>$_POST['coa_hp'],
                 'coa_titipan'=>$_POST['coa_titipan'],
                 'coa_cadangan'=>$_POST['coa_cadangan'],
+                'coa_lain'=>$_POST['coa_lain'],
                 'lokasi_kavling'=>$_POST['lok_kav'],
                 'status_tagihan'=>$val_sts_tagihan,
                 'nama_pemilik'=>$_POST['nama_pemilik'],
@@ -142,12 +144,13 @@ class kavling extends CI_Controller
                 'luas_bangunan'=>floatval($_POST['lb']),
                 'harga_jual'=>floatval(str_replace('.', '', $_POST['harga_jual'])),
                 // 'coa_bh'=>$_POST['coa_bh'],
-                'coa_retur'=>$_POST['coa_retur'],
-                'coa_jl'=>$_POST['coa_jl'],
-                'coa_piutang'=>$_POST['coa_piutang'],
-                'coa_hp'=>$_POST['coa_hp'],
-                'coa_titipan'=>$_POST['coa_titipan'],
-                'coa_cadangan'=>$_POST['coa_cadangan'],
+                'coa_retur'=>isset($_POST['coa_retur'])?$_POST['coa_retur']:'',
+                'coa_jl'=>isset($_POST['coa_jl'])?$_POST['coa_jl']:'',
+                'coa_piutang'=>isset($_POST['coa_piutang'])?$_POST['coa_piutang']:'',
+                'coa_hp'=>isset($_POST['coa_hp'])?$_POST['coa_hp']:'',
+                'coa_titipan'=>isset($_POST['coa_titipan'])?$_POST['coa_titipan']:'',
+                'coa_cadangan'=>isset($_POST['coa_cadangan'])?$_POST['coa_cadangan']:'',
+                'coa_lain'=>isset($_POST['coa_lain'])?$_POST['coa_lain']:'',
                 'lokasi_kavling'=>$_POST['lok_kav'],
                 'status_tagihan'=>isset($_POST['sts_tagihan']) ? 1 : 0,
                 'nama_pemilik'=>$_POST['nama_pemilik'],
@@ -180,12 +183,16 @@ class kavling extends CI_Controller
 
         $kav = $_POST['kav'];
         $lok_kav = $this->m_lok_kav->show_all();
-        $coa_aktif = $this->m_coa->show_all('',1);
+        $coa_aktif = $this->m_coa->show_all('',1,'');
         $dt_kav = $this->m_kav->show_detail($kav);
         
         $data['detail_kav'] = $dt_kav['datanya'];
         $data['lok_kav'] = $lok_kav;
         $data['coa_aktif'] = $coa_aktif;
+        $data['coa_penjualan'] = $this->m_coa->show_all('',1,'penjualan');
+        $data['coa_hutang'] = $this->m_coa->show_all('',1,'hutang');
+        $data['coa_piutang'] = $this->m_coa->show_all('',1,'piutang');
+        $data['coa_cadangan'] = $this->m_coa->show_all('',1,'cadangan');
     
         return $this->output
             ->set_content_type('application/json')

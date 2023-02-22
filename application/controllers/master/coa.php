@@ -7,17 +7,23 @@ class coa extends CI_Controller
     {
         parent::__construct();
         ini_set('max_execution_time', 0);
+        date_default_timezone_set('Asia/Jakarta');
         if ($this->session->userdata('login_sukses') == FALSE) {
             redirect('login');
             return;
         }
+        
         $this->load->model('master/m_coa');
         $this->load->model('global_model');
     }
     public function index()
     {
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('',0);
+        if($_SESSION['role'] != 'Programmer' && $_SESSION['role'] != 'Accounting Direksi'){
+            redirect('Akses_user');
+            return;
+        }
+        $data['coa'] = $this->m_coa->show_all('',0,'');
         // $data['kota'] = $this->m_kota->fetch_data(1);
         $this->load->view('header');
         $this->load->view('master/v_coa',$data);
@@ -33,7 +39,11 @@ class coa extends CI_Controller
     }
     public function fetch_coa_estate(){
         $data = [];
-        $data['coa'] = $this->m_coa->show_all('',1);
+        $data['coa'] = $this->m_coa->show_all('',1,'');
+        $data['coa_penjualan'] = $this->m_coa->show_all('',1,'penjualan');
+        $data['coa_hutang'] = $this->m_coa->show_all('',1,'hutang');
+        $data['coa_piutang'] = $this->m_coa->show_all('',1,'piutang');
+        $data['coa_cadangan'] = $this->m_coa->show_all('',1,'cadangan');
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
