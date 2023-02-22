@@ -3,7 +3,7 @@ class m_nota extends CI_Model
 {
     function daftar_tagihan($lok_kav,$periode){
         $this->db = $this->load->database('default', true);
-        $this->db->select('tag.id,tag.saldo_awal,tag.saldo_akhir,tag.total_tagihan,lok_kav.lokasi_kav,kav.kode_kavling,kav.nama_pemilik');
+        $this->db->select('tag.id,tag.saldo_awal,tag.saldo_akhir,tag.total_tagihan,tag.status,lok_kav.lokasi_kav,kav.kode_kavling,kav.nama_pemilik');
         $this->db->from('tagihan_kavling as tag');
         $this->db->join('mstr_kavling as kav','tag.id_kav = kav.id');
         $this->db->join('mstr_lokasi_kav as lok_kav','kav.lokasi_kavling = lok_kav.id','left');

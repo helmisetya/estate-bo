@@ -55,6 +55,19 @@ class nota_rekening extends CI_Controller
                 $data['html'] .= '<td>Rp ' . number_format($row->saldo_awal,0,',','.') . '</td>';
                 $data['html'] .= '<td>Rp ' . number_format($row->total_tagihan,0,',','.') . '</td>';
                 $data['html'] .= '<td>Rp ' . number_format($row->saldo_akhir,0,',','.') . '</td>';
+                $text_status = 'Tagihan belum di buat';
+                switch($row->status){
+                    case 1:
+                        $text_status = 'Tagihan sudah di buat';
+                    break;
+                    case 2:
+                        $text_status = 'Tagihan sudah di tagihkan';
+                    break;
+                    case 2:
+                        $text_status = 'Tagihan sudah di bayar / Selesai';
+                    break;
+                }
+                $data['html'] .= '<td>'. $text_status. '</td>';
                 $data['html'] .= '</tr>';
             }
         }
@@ -81,6 +94,8 @@ class nota_rekening extends CI_Controller
             $pdf->Line(10, 30, $pdf->GetPageWidth()-10, 30);
             $pdf->Cell(38, 4, '', 0, 1,'L');
             //ISI
+            $where_update = "id = ".$centang;
+            $edit_status = $this->global_model->update_table('tagihan_kavling',array('status'=>2),$where_update);
             $dt_tagihan = $this->m_nota->detail_tagihan($centang);
             if(count((array)$dt_tagihan['datanya'])>0){
                 $pdf->Cell(30, 6, 'No. Kavling', 0, 0,'L');

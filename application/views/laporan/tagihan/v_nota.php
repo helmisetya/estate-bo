@@ -87,6 +87,7 @@
                                         <th>Saldo Awal</th>
                                         <th>Total Tagihan</th>
                                         <th>Saldo Akhir</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="body-data">
